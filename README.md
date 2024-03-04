@@ -1,8 +1,8 @@
-##start command
+## start command
 cd (path of file)
 or
 open the folder in vscode
 
-#Terminal
+# Terminal
 npm i
 npm start
