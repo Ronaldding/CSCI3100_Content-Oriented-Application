@@ -60,6 +60,7 @@ class Profile extends React.Component {
                         <div className="profileRepostsLine"></div>
                     </div>
                 </div>
+                <div className="Content"></div>
             </div>
         </div>
     )

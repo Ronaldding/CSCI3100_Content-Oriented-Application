@@ -97,3 +97,8 @@
 .profileReposts {
     flex: 4;
 }
+
+.Content {
+    min-height: 2000px;
+    background-color: #555555;
+}
