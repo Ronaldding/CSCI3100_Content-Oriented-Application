@@ -4,8 +4,9 @@ import './style.css';
 import './profile.css'
 import Topbar from './components/Topbar.jsx'
 import { Person } from 'react-ionicons'
+import demoProfilePic from './demoProfilePic.png'
 
-class Login extends React.Component {
+class Profile extends React.Component {
     render(){
     return(
         <div className="profile">
@@ -21,7 +22,7 @@ class Login extends React.Component {
                         </div>
                     </div>
                     <div className="profilePicture">
-                        <Person color={'#ffffff'} height="84px" width="84px"/>
+                        <div className="profilepic" style={{ backgroundImage: `url(${demoProfilePic})`, display: 'flex', alignItems: 'center',justifyContent: 'center', backgroundSize: 'cover',backgroundPosition: 'center', height: '84px', width: '84px', borderRadius: '50%'}}></div>
                     </div>
                 </div>
                 <div className="profileBio">
@@ -45,9 +46,23 @@ class Login extends React.Component {
                 <div className="editProfile">
                     Edit profile
                 </div>
+                <div className="profileSelection">
+                    <div className="profilePosts">
+                        Posts
+                        <div className="profilePostsLine"></div>
+                    </div>
+                    <div className="profileReplies">
+                        Replies
+                        <div className="profileRepliesLine"></div>
+                    </div>
+                    <div className="profileReposts">
+                        Reposts
+                        <div className="profileRepostsLine"></div>
+                    </div>
+                </div>
             </div>
         </div>
     )
     }}
 
-export default Login;
+export default Profile;

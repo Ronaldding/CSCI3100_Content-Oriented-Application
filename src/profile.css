@@ -39,6 +39,7 @@
     text-align: right;
     min-height: 84px;
     min-width: 84px;
+    border-radius: 50%;
 }
 
 .profileBio {
@@ -76,4 +77,23 @@
     text-align: center;
     background-color: #555555;
     border-radius: 5px;
+}
+
+.profileSelection {
+    display: flex;
+    text-align: center;
+    min-height: 30px;
+    margin: 5px 0px 5px 0px;
+}
+
+.profilePosts {
+    flex: 4;
+}
+
+.profileReplies {
+    flex: 4;
+}
+
+.profileReposts {
+    flex: 4;
 }

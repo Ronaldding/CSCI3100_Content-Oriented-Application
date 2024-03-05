@@ -4,7 +4,7 @@ import './topbar.css'
 import { Home, HomeOutline, Search, SearchOutline, Create, CreateOutline, Heart, HeartOutline, Person, PersonOutline, Menu} from 'react-ionicons'
 import ChipichpiLogo from './ChipichpiLogo.png';
 
-class Login extends React.Component {
+class Topbar extends React.Component {
     render(){
     return(
         <div className="topbarContainer">
@@ -28,7 +28,6 @@ class Login extends React.Component {
                     </div>
                     <div className="topbarIconItem">
                         <Person color={'#ffffff'} height="30px" width="30px"/>
-                        <span className="topbarIconBadge"></span>
                     </div>
                 </div>
             </div>
@@ -39,4 +38,4 @@ class Login extends React.Component {
     )
     }}
 
-export default Login;
+export default Topbar;
