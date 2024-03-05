@@ -1,14 +1,15 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import './topbar.css'
-import { Home, HomeOutline, Search, SearchOutline, Create, CreateOutline, Heart, HeartOutline, Person, PersonOutline } from 'react-ionicons'
+import { Home, HomeOutline, Search, SearchOutline, Create, CreateOutline, Heart, HeartOutline, Person, PersonOutline, Menu} from 'react-ionicons'
+import ChipichpiLogo from './ChipichpiLogo.png';
 
 class Login extends React.Component {
     render(){
     return(
         <div className="topbarContainer">
             <div className="topbarLeft">
-                Logo
+                <div className="topbarLogo" style={{ backgroundImage: `url(${ChipichpiLogo})`, display: 'flex', alignItems: 'center',justifyContent: 'center', backgroundSize: 'cover',backgroundPosition: 'center', height: '40px'}}></div>
             </div>
             <div className="topbarCenter">
                 <div className="topbarIcons">
@@ -23,14 +24,16 @@ class Login extends React.Component {
                     </div>
                     <div className="topbarIconItem">
                         <HeartOutline color={'#555555'} height="30px" width="30px"/>
+                        <span className="topbarIconBadge"></span>
                     </div>
                     <div className="topbarIconItem">
                         <Person color={'#ffffff'} height="30px" width="30px"/>
+                        <span className="topbarIconBadge"></span>
                     </div>
                 </div>
             </div>
             <div className="topbarRight">
-                Settings
+                <Menu color={'#555555'} height="30px" width="30px"/>
             </div>
         </div>
     )
