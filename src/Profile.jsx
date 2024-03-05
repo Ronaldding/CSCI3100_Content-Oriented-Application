@@ -4,7 +4,7 @@ import './style.css';
 import './profile.css'
 import Topbar from './components/Topbar.jsx'
 import { Person } from 'react-ionicons'
-import demoProfilePic from './demoProfilePic.png'
+import demoProfilePic from './demoProfilePic.jpg'
 
 class Profile extends React.Component {
     render(){
