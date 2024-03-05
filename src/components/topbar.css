@@ -1,0 +1,40 @@
+.topbarContainer {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: black;
+    color: #ffffff;
+    padding: 0px 30px 0px 30px;
+  }
+
+.topbarLeft {
+    flex: 3;
+}
+
+.topbarCenter {
+    flex: 6;
+    color: #ffffff;
+    padding: 0px 10px 0px 10px;
+}
+
+.topbarRight {
+    flex: 3;
+    text-align: right;
+}
+
+.topbarIcons {
+    display: flex;
+}
+
+.topbarIconItem {
+    flex: 2;
+    color: white;
+    text-align: center;
+}
+
+.topbarIconBadge {
+    color: #ffffff;
+}

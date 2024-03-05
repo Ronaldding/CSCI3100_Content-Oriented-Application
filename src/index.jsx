@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route, Switch, Link, useParams } from 'react-router-dom';
 import Login from './Login.jsx'
 import Home from './Home.jsx'
+import Profile from './Profile.jsx'
+import Topbar from './components/Topbar.jsx'
+// for testing
 
 class App extends React.Component {
     constructor(props) {
@@ -15,6 +18,9 @@ class App extends React.Component {
               <Routes>
                   <Route path="/" element={<Home />} />
                   <Route exact path="/login" element={<Login />} />
+                  <Route exact path="/profile" element={<Profile />} />
+                  <Route exact path="/topbar" element={<Topbar />} />
+                  {/* For testing */}
               </Routes>
               </div>
           </BrowserRouter>
