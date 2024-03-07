@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Switch, Link, useParams } from 'react-rou
 import Login from './Login.jsx'
 import Home from './Home.jsx'
 import Profile from './Profile.jsx'
+import Search from './Search.jsx'
 
 class App extends React.Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class App extends React.Component {
                   <Route path="/" element={<Home />} />
                   <Route exact path="/login" element={<Login />} />
                   <Route exact path="/profile" element={<Profile />} />
+                  <Route exact path="/search" element={<Search />} />
               </Routes>
               </div>
           </BrowserRouter>

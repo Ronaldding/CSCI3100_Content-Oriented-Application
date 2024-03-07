@@ -68,7 +68,7 @@ class Topbar extends React.Component {
                 </button>
                 <div className="topbarSettingsLine"></div>
                 <button className="topbarSettingsItem" onClick={(e) => {e.preventDefault(); window.location.href='/profile';}}>
-                    Settings4
+                    {window.location.href}
                 </button>
             </div>
         </div>

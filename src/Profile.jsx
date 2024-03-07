@@ -5,6 +5,7 @@ import './profile.css'
 import Topbar from './components/Topbar.jsx'
 import { Person } from 'react-ionicons'
 import demoProfilePic from './demoProfilePic.jpg'
+import Feed from './Feed.jsx'
 
 class Profile extends React.Component {
     render(){
@@ -31,8 +32,8 @@ class Profile extends React.Component {
                 <div className="profileFollowersAndLink">
                     <div className="profileFollowersContainer">
                         <div className="profileFollowerPictures">
-                            <Person color={'#ffffff'} height="12px" width="12px"/>
-                            <Person color={'#ffffff'} height="12px" width="12px"/>
+                            <div className="followerprofilepic" style={{ backgroundImage: `url(${demoProfilePic})`, display: 'flex', alignItems: 'center',justifyContent: 'center', backgroundSize: 'cover',backgroundPosition: 'center', height: '14px', width: '14px', borderRadius: '50%'}}></div>
+                            <div className="followerprofilepic" style={{ backgroundImage: `url(${demoProfilePic})`, display: 'flex', alignItems: 'center',justifyContent: 'center', backgroundSize: 'cover',backgroundPosition: 'center', height: '14px', width: '14px', borderRadius: '50%'}}></div>
                         </div>
                         <div className="profileFollowers">
                             <span className="followersNumbers">133</span>
@@ -47,23 +48,21 @@ class Profile extends React.Component {
                     Edit profile
                 </div>
                 <div className="profileSelection">
-                    <div className="profilePosts">
+                    <button className="profilePosts">
                         Posts
-                        <div className="profilePostsLine"></div>
-                    </div>
-                    <div className="profileReplies">
+                    </button>
+                    <button className="profileReplies">
                         Replies
-                        <div className="profileRepliesLine"></div>
-                    </div>
-                    <div className="profileReposts">
+                    </button>
+                    <button className="profileReposts">
                         Reposts
-                        <div className="profileRepostsLine"></div>
-                    </div>
+                    </button>
                 </div>
-                <div className="Content"></div>
+                <Feed />
+                {/* <div className="Content"></div> */}
             </div>
         </div>
     )
-    }}
+    }} 
 
 export default Profile;

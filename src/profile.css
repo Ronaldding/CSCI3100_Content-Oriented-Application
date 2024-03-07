@@ -63,7 +63,9 @@
 }
 
 .profileFollowerPictures {
-    min-width: 30px;
+    display: flex;
+    min-width: 40px;
+
 }
 
 .profileLink {
@@ -89,17 +91,38 @@
 
 .profilePosts {
     flex: 4;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: solid 1px;
+    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) white rgba(0, 0, 0, 0);
 }
 
 .profileReplies {
     flex: 4;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #555555;
+    border: solid 1px;
+    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #333333 rgba(0, 0, 0, 0);
 }
 
 .profileReposts {
     flex: 4;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #555555;
+    border: solid 1px;
+    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #333333 rgba(0, 0, 0, 0);
 }
 
 .Content {
     min-height: 2000px;
     background-color: #555555;
+}
+
+.followerprofilepic {
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
 }
