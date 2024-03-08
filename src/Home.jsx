@@ -10,6 +10,9 @@ class Home extends React.Component {
             <div class="vh-100 d-flex align-items-center justify-content-center">
             <div className="home_container" style={{justifyContent: 'center', alignItems: 'center'}}>
                 <div className='login_form'>
+                    <div className='d-flex align-items-center justify-content-center' style={{alignSelf: 'center' }}>
+                    <img src={require('./components/ChipichpiLogo.png')} height='200px' width = '200px'/>
+                    </div>
                     <h3 className='logo_home'>Chipichipi</h3>
                     <form style={{display: 'flex', flexDirection: 'column'}}>
                         <div className='container' style={{display: 'flex'}}>

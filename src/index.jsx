@@ -5,6 +5,7 @@ import Login from './Login.jsx'
 import Home from './Home.jsx'
 import Profile from './Profile.jsx'
 import Search from './Search.jsx'
+import Register_page from './Register_page.jsx'
 
 class App extends React.Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class App extends React.Component {
               <Routes>
                   <Route path="/" element={<Home />} />
                   <Route exact path="/login" element={<Login />} />
+                  <Route exact path="/register" element={<Register_page />} />
                   <Route exact path="/profile" element={<Profile />} />
                   <Route exact path="/search" element={<Search />} />
               </Routes>

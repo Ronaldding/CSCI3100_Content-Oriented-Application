@@ -23,7 +23,7 @@
 .home_container{
     position: relative;
     width: 350px;
-    height: 270px;
+    height: 400px;
     background: transparent;
     border: 2px solid rgb(63, 85, 96);
     border-radius: 20px;
@@ -48,7 +48,26 @@
     align-items: center;
 }
 
+.register_container{
+    position: relative;
+    width: 350px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid rgb(63, 85, 96);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 20px rgb(1, 0, 15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .login_form{
+    width: 100%;
+    padding: 20px;
+}
+
+.register_form{
     width: 100%;
     padding: 20px;
 }
