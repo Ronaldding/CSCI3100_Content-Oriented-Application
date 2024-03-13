@@ -1,11 +1,11 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
-import './style.css';
+import '../style.css';
 import './profile.css'
-import Topbar from './components/Topbar.jsx'
+import Topbar from '../components/Topbar.jsx'
 import { Person } from 'react-ionicons'
-import demoProfilePic from './demoProfilePic.jpg'
-import Feed from './Feed.jsx'
+import demoProfilePic from '../demoProfilePic.jpg'
+import Feed from '../components/Feed.jsx'
 
 class Profile extends React.Component {
     render(){

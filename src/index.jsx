@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route, Switch, Link, useParams } from 'react-router-dom';
 import Login from './Login.jsx'
 import Home from './Home.jsx'
-import Profile from './Profile.jsx'
-import Search from './Search.jsx'
+import Profile from './pages/Profile.jsx'
+import Search from './pages/Search.jsx'
 
 class App extends React.Component {
     constructor(props) {
