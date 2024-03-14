@@ -5,6 +5,9 @@ import Login from './Login.jsx'
 import Home from './Home.jsx'
 import Profile from './pages/Profile.jsx'
 import Search from './pages/Search.jsx'
+import Explore from './pages/Explore.jsx'
+import Saved from './pages/Saved.jsx'
+import PostDetails from './pages/PostDetails.jsx'
 
 class App extends React.Component {
     constructor(props) {
@@ -19,6 +22,9 @@ class App extends React.Component {
                   <Route exact path="/login" element={<Login />} />
                   <Route exact path="/profile" element={<Profile />} />
                   <Route exact path="/search" element={<Search />} />
+                  <Route exact path="/explore" element={<Explore />} />
+                  <Route exact path="/saved" element={<Saved />} />
+                  <Route exact path="/post" element={<PostDetails />} />
               </Routes>
               </div>
           </BrowserRouter>

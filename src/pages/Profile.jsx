@@ -16,10 +16,10 @@ class Profile extends React.Component {
                 <div className="profileInfo">
                     <div className="profileNameAndId">
                         <div className="profileName">
-                            Ronald Ding
+                            <label>Ronald Ding</label>
                         </div>
                         <div className="profileId">
-                            @ronald_ding
+                            <label>@ronald_ding</label>
                         </div>
                     </div>
                     <div className="profilePicture">
@@ -27,7 +27,7 @@ class Profile extends React.Component {
                     </div>
                 </div>
                 <div className="profileBio">
-                    🐿️ 🏕️ 📖🤖🏋️🎥☕️🍫Live Love Laugh Be kind
+                    <label>🐿️ 🏕️ 📖🤖🏋️🎥☕️🍫Live Love Laugh Be kind</label>
                 </div>
                 <div className="profileFollowersAndLink">
                     <div className="profileFollowersContainer">
@@ -45,17 +45,17 @@ class Profile extends React.Component {
                     </div>
                 </div>
                 <div className="editProfile">
-                    Edit profile
+                    <label>Edit profile</label>
                 </div>
                 <div className="profileSelection">
                     <button className="profilePosts">
-                        Posts
+                        <label>Posts</label>
                     </button>
                     <button className="profileReplies">
-                        Replies
+                        <label>Replies</label>
                     </button>
                     <button className="profileReposts">
-                        Reposts
+                        <label>Reposts</label>
                     </button>
                 </div>
                 <Feed />

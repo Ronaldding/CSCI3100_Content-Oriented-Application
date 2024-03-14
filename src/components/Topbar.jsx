@@ -31,8 +31,8 @@ class Topbar extends React.Component {
             </div>
             <div className="topbarCenter">
                 <div className="topbarIcons">
-                    <button className="topbarIconItem" onClick={(e) => {e.preventDefault(); window.location.href='/';}} onMouseEnter={turnOnBackground} onMouseLeave={turnOffBackground} >
-                        <HomeOutline color={'#555555'} background={'rgba(0, 0, 0, 0)'} height="30px" width="30px"/>
+                    <button className="topbarIconItem" onClick={(e) => {e.preventDefault(); window.location.href='/explore';}} onMouseEnter={turnOnBackground} onMouseLeave={turnOffBackground} >
+                        <Home color={'#ffffff'} background={'rgba(0, 0, 0, 0)'} height="30px" width="30px"/>
                     </button>
                     <button className="topbarIconItem" onClick={(e) => {e.preventDefault(); window.location.href='/search';}} onMouseEnter={turnOnBackground} onMouseLeave={turnOffBackground}>
                         <SearchOutline color={'#555555'} background={'rgba(0, 0, 0, 0)'} height="30px" width="30px"/>
@@ -41,11 +41,11 @@ class Topbar extends React.Component {
                         <CreateOutline color={'#555555'} background={'rgba(0, 0, 0, 0)'} height="30px" width="30px"/>
                     </button>
                     <button className="topbarIconItem" onClick={(e) => {e.preventDefault(); window.location.href='/notifications';}} onMouseEnter={turnOnBackground} onMouseLeave={turnOffBackground}>
-                            <HeartOutline color={'#555555'} background={'rgba(0, 0, 0, 0)'} height="30px" width="30px"/>
-                            <span className="topbarIconBadge" background={'red'}></span>
+                        <HeartOutline color={'#555555'} background={'rgba(0, 0, 0, 0)'} height="30px" width="30px"/>
+                        <span className="topbarIconBadge" background={'red'}></span>
                     </button>
                     <button className="topbarIconItem" onClick={(e) => {e.preventDefault(); window.location.href='/profile';}} onMouseEnter={turnOnBackground} onMouseLeave={turnOffBackground}>
-                            <Person color={'#ffffff'} background={'rgba(0, 0, 0, 0)'} height="30px" width="30px"/>
+                        <PersonOutline color={'#555555'} background={'rgba(0, 0, 0, 0)'} height="30px" width="30px"/>
                     </button>
                 </div>
             </div>
@@ -54,23 +54,24 @@ class Topbar extends React.Component {
                     <Menu color={'#555555'} height="30px" width="30px"/>
                 </button>
             </div>
-            <div className="topbarSettingsList">
+            {/* <div className="topbarSettingsList">
                 <button className="topbarSettingsItem" onClick={(e) => {e.preventDefault(); window.location.href='/profile';}}>
                     Settings
                 </button>
                 <div className="topbarSettingsLine"></div>
                 <button className="topbarSettingsItem" onClick={(e) => {e.preventDefault(); window.location.href='/profile';}}>
-                    Settings2
+                    Saved
                 </button>
                 <div className="topbarSettingsLine"></div>
                 <button className="topbarSettingsItem" onClick={(e) => {e.preventDefault(); window.location.href='/profile';}}>
-                    Settings3
+                    Report a problem
                 </button>
                 <div className="topbarSettingsLine"></div>
                 <button className="topbarSettingsItem" onClick={(e) => {e.preventDefault(); window.location.href='/profile';}}>
                     {window.location.href}
+                    Log out
                 </button>
-            </div>
+            </div> */}
         </div>
     )
     }

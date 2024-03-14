@@ -1,0 +1,26 @@
+.explore {
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    min-width: max-content;
+}
+
+.exploreContainer {
+    margin: 0% 25% 0% 25%;
+    padding: 0% 5% 0% 5%;
+}
+
+.contentSwitch {
+    width: 150px;
+    height: 60px;
+    position: absolute;
+    bottom: 50px;
+    left: 150px;
+    background-color: #222222;
+    border-radius: 30px;
+    text-align: center;
+    align-items: center;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-around;
+}

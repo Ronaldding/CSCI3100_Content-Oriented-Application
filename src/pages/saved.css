@@ -1,0 +1,11 @@
+.saved {
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    min-width: max-content;
+}
+
+.savedContainer {
+    margin: 0% 25% 0% 25%;
+    padding: 0% 5% 0% 5%;
+}
