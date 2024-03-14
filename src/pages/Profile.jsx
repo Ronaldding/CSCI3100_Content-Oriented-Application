@@ -59,7 +59,6 @@ class Profile extends React.Component {
                     </button>
                 </div>
                 <Feed />
-                {/* <div className="Content"></div> */}
             </div>
         </div>
     )
