@@ -1,8 +1,8 @@
+import Topbar_admin from '../components/topbar_admin.jsx'
 import React, { Component } from 'react';
-import './pages/profile.css'
-import Topbar_admin from './components/topbar_admin.jsx'
+import '../pages/profile.css'
 
-class Admin_user_management extends React.Component {
+class Admin_manage_user extends React.Component {
     constructor(props) {
       super(props);
     }
@@ -13,4 +13,4 @@ class Admin_user_management extends React.Component {
             </div>
           )}}
 
-export default Admin_user_management
+export default Admin_manage_user
