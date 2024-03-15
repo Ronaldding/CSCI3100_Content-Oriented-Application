@@ -1,0 +1,89 @@
+
+.back {
+    background-color: black;
+    min-height: 100vh;
+    min-width: max-content;
+    color: white;
+    margin: 0;
+}
+
+.container {
+    align-content: center;
+    justify-content: center;
+    border: 1.5px solid;
+    border-color: white;
+    border-radius: 20px;
+}
+
+.block {
+    align-content: center;
+    justify-content: center;
+}
+
+.title h3{
+    font-family: 'Arial', serif; 
+    font-size: 37px; 
+    font-weight: normal; 
+    line-height: 48px;
+}
+
+.line {
+    background-color: rgb(255, 255, 255);
+    height: 1px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+
+
+.tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.table th{
+    color: white; 
+    font-size: 30px;
+    background-color: black
+
+}
+
+.table td{
+    color: white; 
+    font-size: 20px;
+    background-color: black
+}
+
+.table {
+    width: 100%;
+    background-color: black;
+    margin-top: 5px;
+}
+
+.btn-primary{
+    border-radius: 35px;
+    border: 2px solid rgba(0, 70, 147, 0.75);
+}
+
+.btn-danger{
+    border-radius: 35px;
+    border: 1px solid rgba(199, 24, 41, 0.75);    
+}
+
+.btn-warning{
+    border-radius: 35px;
+    border: 1px solid rgba(180, 143, 34, 0.75);   
+}
+
+.btn-info{
+    border-radius: 35px;
+    border: 1px solid rgba(23, 162, 184, 0.75); 
+}
+
+.title h3 {
+    padding-left: 5%;
+}
+

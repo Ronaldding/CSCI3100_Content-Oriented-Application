@@ -11,6 +11,7 @@ import Explore from './pages/Explore.jsx'
 import Saved from './pages/Saved.jsx'
 import PostDetails from './pages/PostDetails.jsx'
 import Admin_manage_user from './admin_page/admin_manage_user.jsx'
+import Admin_manage_post from './admin_page/admin_manage_post.jsx'
 
 class App extends React.Component {
     constructor(props) {
@@ -31,6 +32,7 @@ class App extends React.Component {
                   <Route exact path="/saved" element={<Saved />} />
                   <Route exact path="/post" element={<PostDetails />} />
                   <Route exact path="/admin_manage_user" element={<Admin_manage_user />} />
+                  <Route exact path="/admin_manage_post" element={<Admin_manage_post />} />
               </Routes>
               </div>
           </BrowserRouter>
