@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import login_background from './background3.jpg';
 import './style.css';
-import { PersonCircle, LockClosedOutline } from 'react-ionicons'
+import { PersonCircle, LockClosedOutline, MailOutline } from 'react-ionicons'
 
 class Register_page extends React.Component {
     render(){
@@ -29,6 +29,13 @@ class Register_block extends React.Component {
                 <div className='register_form'>
                     <h3 className='logo'>Register</h3>
                     <form onSubmit={this.login_handleSubmit} style={{display: 'flex', flexDirection: 'column'}}>
+                        <div className="input_container">
+                            <span className="icon">
+                                <MailOutline color={'#ffffff'}  />
+                            </span>
+                            <input type="email" required/>
+                            <label>Email</label>
+                        </div>
                         <div className='input_container '>
                             <span class='icon'>
                             <PersonCircle color={'#ffffff'}   />
