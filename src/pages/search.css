@@ -3,22 +3,90 @@
     color: white;
     min-height: 100vh;
     min-width: max-content;
-}
-
-.searchContainer {
+  }
+  
+  .searchContainer {
     margin: 0% 25% 0% 25%;
     padding: 0% 5% 0% 5%;
-}
-
-.searchBar {
+  }
+  
+  .searchBar {
     display: flex;
+    align-items: center;
     width: 99%;
     border-radius: 10px;
     background-color: #555555;
     padding: 10px;
-}
+  }
+  
+  .searchInput {
+    flex: 1;
+    border: none;
+    background-color: transparent;
+    color: white;
+    outline: none;
+    padding-left: 10px;
+  }
+  
+  .searchButtons {
+    display: flex;
+    margin-left: 10px;
+  }
+  
+  .searchTypeButton {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .searchTypeButton.active {
+    background-color: #007bff;
+  }
+  
+  .searchResults {
+    margin-top: 20px;
+  }
+  
+  .searchResultItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .searchResultItem img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .searchResultItem span {
+    color: white;
+  }
+  
+  .followButton {
+    margin-left: auto;
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
-.searchText {
-    padding-left: 20px;
-    color: #999999;
-}
+  .searchTypeButton {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .searchTypeButton.active {
+    background-color: white;
+    color: black;
+  }

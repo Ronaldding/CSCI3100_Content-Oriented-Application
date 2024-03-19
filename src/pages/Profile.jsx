@@ -6,8 +6,24 @@ import Topbar from '../components/Topbar.jsx'
 import { Person } from 'react-ionicons'
 import demoProfilePic from '../demoProfilePic.jpg'
 import Feed from '../components/Feed.jsx'
+import EditProfile from '../components/EditProfile.jsx';
 
 class Profile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          isEditProfileOpen: false,
+        };
+      }
+    
+      handleEditProfileClick = () => {
+        this.setState({ isEditProfileOpen: true });
+      };
+    
+      handleCloseEditProfile = () => {
+        this.setState({ isEditProfileOpen: false });
+      };
+
     render(){
     return(
         <div className="profile">
@@ -44,7 +60,7 @@ class Profile extends React.Component {
                         <Person color={'#ffffff'} height="30px" width="30px"/>
                     </div>
                 </div>
-                <div className="editProfile">
+                <div className="editProfile" onClick={this.handleEditProfileClick}>
                     <label>Edit profile</label>
                 </div>
                 <div className="profileSelection">
@@ -60,6 +76,9 @@ class Profile extends React.Component {
                 </div>
                 <Feed />
             </div>
+            {this.state.isEditProfileOpen && (
+            <EditProfile onClose={this.handleCloseEditProfile} />
+            )}
         </div>
     )
     }} 

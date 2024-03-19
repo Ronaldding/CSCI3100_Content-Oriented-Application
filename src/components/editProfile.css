@@ -1,0 +1,93 @@
+.editProfileOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.editProfilePopup {
+  background-color: #555555;
+  padding: 20px;
+  border-radius: 6px;
+  max-width: 800px;
+  width: 100%;
+  color: #ffffff;
+  backdrop-filter: blur(5px);
+}
+
+.editProfilePopup .closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.editProfilePopup h2 {
+  margin-top: 0;
+}
+
+.profileForm {
+  display: flex;
+}
+
+.profilePictureColumn {
+  flex: 0 0 200px;
+}
+
+.profilePictureLabel {
+  cursor: pointer;
+}
+
+.profilePicture {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profileDetailsColumn {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.profileField {
+  margin-bottom: 10px;
+}
+
+.profileField label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.profileField input,
+.profileField textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.saveButton {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.saveButton:hover {
+  background-color: #eeeeee;
+}
