@@ -14,12 +14,12 @@ class Home extends React.Component {
                     <img src={require('./components/ChipichpiLogo.png')} height='200px' width = '200px'/>
                     </div>
                     <h3 className='logo_home'>Chipichipi</h3>
-                    <form style={{display: 'flex', flexDirection: 'column'}}>
-                        <div className='container' style={{display: 'flex'}}>
-                            <button type='submit' className="button" style={{margin: '5px'}}><a href='/login' >Login</a></button>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <div className='container' style={{display: 'flex', border: 'none', justifyContent: 'center', alignItems: 'center', paddingLeft: '50px'}}>
+                            <button type='submit' className="button" style={{margin: '5px'}}><a href='/login'>Login</a></button>
                             <button type='submit' className="button" style={{margin: '5px'}}><a href='/register' >Register</a></button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
             </div>

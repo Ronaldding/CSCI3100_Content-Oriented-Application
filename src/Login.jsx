@@ -44,7 +44,7 @@ class Login_block extends React.Component {
                             <label>Password</label>
                         </div>
                         <button type='submit' className="button">Login</button>
-                        <div className="register">
+                        <div className="register" style={{justifyContent: 'center', alignContent: 'center', display: 'flex'}}>
                             <p>Don't have an account? <a href="/register" className="register_link">Register here</a></p>
                         </div>
 

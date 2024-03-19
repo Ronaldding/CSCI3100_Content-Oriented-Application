@@ -51,7 +51,7 @@ class Register_block extends React.Component {
                             <label>Password</label>
                         </div>
                         <button type='submit' className="button">Register</button>
-                        <div className="register">
+                        <div className="register" style={{justifyContent: 'center', alignContent: 'center', display: 'flex'}}>
                             <p>Already have an account? <a href="/login" className="register_link">Login</a></p>
                         </div>
 

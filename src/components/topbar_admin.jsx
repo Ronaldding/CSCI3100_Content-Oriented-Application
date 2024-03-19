@@ -35,10 +35,10 @@ class Topbar_admin extends React.Component {
             <div>
                 <div className="topbarmiddle_admin" style={{alignContent: 'center'}}>
                     <button className="topbarIconItem_admin" onClick={(e) => {e.preventDefault(); window.location.href='/admin_manage_user';changecolor(e);}} onMouseEnter={turnOnBackground} onMouseLeave={turnOffBackground} >
-                        <PeopleOutline color={'#ffffff'} background={'rgba(0, 0, 0, 0)'} height="30px" width="30px" />
+                        <PeopleOutline color={'#555555n'} background={'rgba(0, 0, 0, 0)'} height="30px" width="30px" />
                     </button>
                     <button className="topbarIconItem_admin" onClick={(e) => {e.preventDefault(); window.location.href='/admin_manage_post';changecolor(e);}} onMouseEnter={turnOnBackground} onMouseLeave={turnOffBackground} >
-                        <ChatbubbleOutline color={'#555555'} background={'rgba(0, 0, 0, 0)'} height="30px" width="30px"/>
+                        <ChatbubbleOutline color={'#ffffff'} background={'rgba(0, 0, 0, 0)'} height="30px" width="30px"/>
                     </button>
                 </div>
             </div>
