@@ -33,10 +33,10 @@ class App extends React.Component {
                   <Route exact path="/post" element={<PostDetails />} />
                   <Route exact path="/admin_manage_user" element={<Admin_manage_user />} />
                   <Route exact path="/admin_manage_post" element={<Admin_manage_post />} />
+                  <Route exact path="/notification" element={<Search />} />
               </Routes>
               </div>
           </BrowserRouter>
-  
           )
       }}
 
