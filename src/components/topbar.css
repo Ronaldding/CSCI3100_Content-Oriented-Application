@@ -1,15 +1,18 @@
+.topbarWithCreatePost {
+  position: sticky;
+  z-index: 100;
+  width: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
 .topbarContainer {
     height: 70px;
-    width: 100%;
+    padding: 0px 100px;
     display: flex;
     align-items: center;
-    position: sticky;
-    top: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
     color: #ffffff;
-    padding: 0px 100px;
-    z-index: 100;
   }
   
   .topbarLeft {

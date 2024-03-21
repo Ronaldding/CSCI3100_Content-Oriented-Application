@@ -6,6 +6,7 @@ import Topbar from '../components/Topbar.jsx'
 import { Person } from 'react-ionicons'
 import Feed from '../components/Feed.jsx'
 import EditProfile from '../components/EditProfile.jsx';
+import {Posts} from '../dummyData.js'
 
 class Profile extends React.Component {
     constructor(props) {
@@ -33,7 +34,7 @@ class Profile extends React.Component {
             "name" : "Ronald Ding",
             "id" : "@ronald_ding",
             "bio" : "🐿️ 🏕️ 📖🤖🏋️🎥☕️🍫Live Love Laugh Be kind",
-            "profilePic" : '/assets/person/1.jpeg'
+            "profilePic" : '/assets/person/10.jpeg'
         };
         
         const { activeButton } = this.state;
@@ -119,22 +120,22 @@ class Profile extends React.Component {
                         className={`profileButton ${activeButton === 'posts' ? 'active' : ''}`}
                         onClick={() => this.handleButtonClick('posts')}
                     >
-                        <label>Posts</label>
+                        Posts
                     </button>
                     <button
                         className={`profileButton ${activeButton === 'replies' ? 'active' : ''}`}
                         onClick={() => this.handleButtonClick('replies')}
                     >
-                        <label>Replies</label>
+                        Replies
                     </button>
                     <button
                         className={`profileButton ${activeButton === 'reposts' ? 'active' : ''}`}
                         onClick={() => this.handleButtonClick('reposts')}
                     >
-                        <label>Reposts</label>
+                        Reposts
                     </button>
                 </div>
-                <Feed activeButton={activeButton} />
+                <Feed activeButton={activeButton} posts={Posts}/>
             </div>
             {this.state.isEditProfileOpen && (
             <EditProfile onClose={this.handleCloseEditProfile} profileInfo={profileInfo}/>

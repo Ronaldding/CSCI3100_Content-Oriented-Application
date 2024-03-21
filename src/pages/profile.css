@@ -84,7 +84,7 @@
     background-color: transparent;
     color: white;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 18px;
   }
   
 .editProfileButton:hover {
@@ -100,11 +100,12 @@
 
 .profileButton {
     flex: 1;
-    padding: 0;
+    padding: 15px;
     background-color: transparent;
     color: #555555;
     border: none;
     position: relative;
+    font-size: 18px;;
   }
 
   .profileButton.active {
@@ -121,9 +122,9 @@
     background-color: white;
   }
   
-  .profileButton:hover {
+  /* .profileButton:hover {
     background-color: rgba(255, 255, 255, 0.2);
-  }
+  } */
 
 .Content {
     min-height: 2000px;
