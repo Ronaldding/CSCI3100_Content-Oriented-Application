@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import React, { Component, useState } from 'react';
-import './topbar.css'
+import './topbar_admin.css'
 import { Home, PeopleOutline, ChatbubbleOutline, SearchOutline, Create, CreateOutline, Heart, HeartOutline, Person, PersonOutline, Menu} from 'react-ionicons'
 import ChipichpiLogo from './ChipichpiLogo.png';
 
