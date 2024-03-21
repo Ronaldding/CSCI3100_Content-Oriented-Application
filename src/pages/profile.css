@@ -91,6 +91,10 @@
     background-color: #333333;
 }
 
+.followAndMessage {
+    display: flex;
+}
+
 .profileSelection {
     display: flex;
     text-align: center;

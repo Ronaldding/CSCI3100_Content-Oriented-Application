@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import './topbar.css';
 import {
   Home,
@@ -39,14 +39,6 @@ const Topbar = () => {
   const handleSettingsToggle = () => {
     setIsSettingsOpen(!isSettingsOpen);
   };
-
-  const redirectToSettings = () => {
-    window.location.href = "/settings";
-  }
-  
-  const redirectToSaved = () => {
-    window.location.href = "/saved";
-  }
   
   const reportProblem = () => {
     window.location.href = "mailto:1155158520@link.cuhk.edu.hk?subject=ChipiChipi: Report a problem";
@@ -56,30 +48,24 @@ const Topbar = () => {
     // TODO: Clear token and perform any necessary logout actions
     // Example: Clear token from local storage
     localStorage.removeItem("token");
-    window.location.href = "/";
   }
 
   return (
     <div className="topbarWithCreatePost">
       <div className="topbarContainer">
         <div className="topbarLeft">
-          <a href="/">
+          <Link to="/">
             <button
               className="topbarLogo"
               style={{
                 backgroundImage: `url(${ChipichpiLogo})`
               }}
             ></button>
-          </a>
+          </Link>
         </div>
         <div className="topbarCenter">
           <div className="topbarIcons">
-            <button
-              className="topbarIconItem"
-              onClick={() => {
-                window.location.href = '/explore';
-              }}
-            >
+            <Link to='/explore' className="topbarIconItem">
                 {location.pathname.includes('/explore') ? (
                     <Home
                     color="#ffffff"
@@ -95,29 +81,24 @@ const Topbar = () => {
                     width="30px"
                     />
                 )}
-            </button>
-            <button
-              className="topbarIconItem"
-              onClick={() => {
-                window.location.href = '/search';
-              }}
-            >
+            </Link>
+            <Link to='/search' className="topbarIconItem">
               {location.pathname.includes('/search') ? (
-                    <Search
-                    color="#ffffff"
-                    background="transparent"
-                    height="30px"
-                    width="30px"
-                    />
-                ) : (
-                    <SearchOutline
-                    color="#555555"
-                    background="transparent"
-                    height="30px"
-                    width="30px"
-                    />
-                )}
-            </button>
+                  <Search
+                  color="#ffffff"
+                  background="transparent"
+                  height="30px"
+                  width="30px"
+                  />
+              ) : (
+                  <SearchOutline
+                  color="#555555"
+                  background="transparent"
+                  height="30px"
+                  width="30px"
+                  />
+              )}
+            </Link>
             <button
               className="topbarIconItem"
               onClick={handleCreatePostOpen}
@@ -129,12 +110,7 @@ const Topbar = () => {
                 width="30px"
               />
             </button>
-            <button
-              className="topbarIconItem"
-              onClick={() => {
-                window.location.href = '/notification';
-              }}
-            >
+            <Link to='/notification' className="topbarIconItem">
               {location.pathname.includes('/notification') ? (
                     <Heart
                     color="#ffffff"
@@ -150,13 +126,8 @@ const Topbar = () => {
                     width="30px"
                     />
                 )}
-            </button>
-            <button
-              className="topbarIconItem"
-              onClick={() => {
-                window.location.href = '/profile';
-              }}
-            >
+            </Link>
+            <Link to='/profile' className="topbarIconItem">
               {location.pathname.includes('/profile') ? (
                     <Person
                     color="#ffffff"
@@ -172,7 +143,7 @@ const Topbar = () => {
                     width="30px"
                     />
                 )}
-            </button>
+            </Link>
           </div>
         </div>
         <div className="topbarRight">
@@ -187,14 +158,14 @@ const Topbar = () => {
           {isSettingsOpen && (
             <ul className="topbarSettingsList">
                 <li>
-                <button className="topbarSettingsItem" onClick={redirectToSettings}>
+                <Link to='/settings' className="topbarSettingsItem">
                     Settings
-                </button>
+                </Link>
                 </li>
                 <li>
-                <button className="topbarSettingsItem" onClick={redirectToSaved}>
+                <Link to='/saved' className="topbarSettingsItem">
                     Saved
-                </button>
+                </Link>
                 </li>
                 <li>
                 <button className="topbarSettingsItem" onClick={reportProblem}>
@@ -202,9 +173,9 @@ const Topbar = () => {
                 </button>
                 </li>
                 <li>
-                <button className="topbarSettingsItem" onClick={logout}>
+                <Link className="topbarSettingsItem" to='/' onClick={logout}>
                     Log Out
-                </button>
+                </Link>
                 </li>
             </ul>
           )}

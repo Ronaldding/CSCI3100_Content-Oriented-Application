@@ -29,6 +29,10 @@ class Profile extends React.Component {
         this.setState({ activeButton: button });
       };
 
+      handleFollowClick = () => {
+        this.setState({  });
+      };
+
     render(){
         const profileInfo = {
             "name" : "Ronald Ding",
@@ -112,8 +116,16 @@ class Profile extends React.Component {
                         <Person color={'#ffffff'} height="30px" width="30px"/>
                     </div>
                 </div>
+                <div className="followAndMessage">
+                    <button className="editProfileButton" onClick={this.handleFollowClick}>
+                        Follow
+                    </button>
+                    <button className="editProfileButton" onClick={this.handleMessageClick}>
+                        Message
+                    </button>
+                </div>
                 <button className="editProfileButton" onClick={this.handleEditProfileClick}>
-                    <label>Edit profile</label>
+                    Edit profile
                 </button>
                 <div className="profileSelection">
                     <button
