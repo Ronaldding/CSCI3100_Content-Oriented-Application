@@ -5,12 +5,6 @@ import './editProfile.css';
 class EditProfile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: 'Ronald Ding',
-      userId: '@ronald_ding',
-      bio: '🐿️ 🏕️ 📖🤖🏋️🎥☕️🍫Live Love Laugh Be kind',
-      profilePic: '/assets/person/1.jpeg',
-    };
   }
 
   handleNameChange = (event) => {
@@ -35,8 +29,6 @@ class EditProfile extends React.Component {
   };
 
   render() {
-    const { name, userId, bio, profilePic } = this.state;
-
     return (
       <div className="editProfileOverlay">
         <div className="editProfilePopup">
@@ -49,7 +41,7 @@ class EditProfile extends React.Component {
               <label className="profilePictureLabel" htmlFor="profilePicUpload">
                 <img
                   className="profilePicture"
-                  src={profilePic}
+                  src={this.props.profileInfo.profilePic}
                   alt="Profile"
                 />
                 <input
@@ -67,7 +59,7 @@ class EditProfile extends React.Component {
                 <input
                   type="text"
                   id="nameInput"
-                  value={name}
+                  value={this.props.profileInfo.name}
                   onChange={this.handleNameChange}
                 />
               </div>
@@ -76,7 +68,7 @@ class EditProfile extends React.Component {
                 <input
                   type="text"
                   id="userIdInput"
-                  value={userId}
+                  value={this.props.profileInfo.id}
                   onChange={this.handleUserIdChange}
                 />
               </div>
@@ -84,7 +76,7 @@ class EditProfile extends React.Component {
                 <label htmlFor="bioInput">Bio:</label>
                 <textarea
                   id="bioInput"
-                  value={bio}
+                  value={this.props.profileInfo.bio}
                   onChange={this.handleBioChange}
                 />
               </div>

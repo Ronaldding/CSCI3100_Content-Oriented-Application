@@ -29,10 +29,13 @@ class Profile extends React.Component {
       };
 
     render(){
-        const name = "Ronald Ding";
-        const id = "@ronald_ding";
-        const bio = "🐿️ 🏕️ 📖🤖🏋️🎥☕️🍫Live Love Laugh Be kind";
-        const profilePic = '/assets/person/1.jpeg';
+        const profileInfo = {
+            "name" : "Ronald Ding",
+            "id" : "@ronald_ding",
+            "bio" : "🐿️ 🏕️ 📖🤖🏋️🎥☕️🍫Live Love Laugh Be kind",
+            "profilePic" : '/assets/person/1.jpeg'
+        };
+        
         const { activeButton } = this.state;
     return(
         <div className="profile">
@@ -41,17 +44,17 @@ class Profile extends React.Component {
                 <div className="profileInfo">
                     <div className="profileNameAndId">
                         <div className="profileName">
-                        <label>{name}</label>
+                        <label>{profileInfo.name}</label>
                         </div>
                         <div className="profileId">
-                        <label>{id}</label>
+                        <label>{profileInfo.id}</label>
                         </div>
                     </div>
                     <div className="profilePicture">
                         <div
                         className="profilepic"
                         style={{
-                            backgroundImage: `url(${profilePic})`,
+                            backgroundImage: `url(${profileInfo.profilePic})`,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -65,7 +68,7 @@ class Profile extends React.Component {
                     </div>
                 </div>
                 <div className="profileBio">
-                <label>{bio}</label>
+                <label>{profileInfo.bio}</label>
                 </div>
                 <div className="profileFollowersAndLink">
                     <div className="profileFollowersContainer">
@@ -73,7 +76,7 @@ class Profile extends React.Component {
                         <div
                             className="followerprofilepic"
                             style={{
-                            backgroundImage: `url(${profilePic})`,
+                            backgroundImage: `url(${profileInfo.profilePic})`,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -87,7 +90,7 @@ class Profile extends React.Component {
                         <div
                             className="followerprofilepic"
                             style={{
-                            backgroundImage: `url(${profilePic})`,
+                            backgroundImage: `url(${profileInfo.profilePic})`,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -134,7 +137,7 @@ class Profile extends React.Component {
                 <Feed activeButton={activeButton} />
             </div>
             {this.state.isEditProfileOpen && (
-            <EditProfile onClose={this.handleCloseEditProfile} />
+            <EditProfile onClose={this.handleCloseEditProfile} profileInfo={profileInfo}/>
             )}
         </div>
     )

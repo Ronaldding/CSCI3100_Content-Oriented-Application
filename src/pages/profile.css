@@ -102,9 +102,13 @@
     flex: 1;
     padding: 0;
     background-color: transparent;
-    color: white;
+    color: #555555;
     border: none;
     position: relative;
+  }
+
+  .profileButton.active {
+    color: white;
   }
   
   .profileButton.active::after {

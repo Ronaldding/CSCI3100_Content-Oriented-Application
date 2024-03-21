@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './post.css';
 import { EllipsisVertical, HeartOutline, ChatbubbleOutline, PaperPlaneOutline } from 'react-ionicons'
 
-const Post = ({ post }) => {
+const Post = ({ props }) => {
 
   return (
     <div className="post">
