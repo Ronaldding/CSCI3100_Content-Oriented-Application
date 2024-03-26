@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const UserSchema = mongoose.Schema({
     userId: {
         type: String,
-        // unique: true,
+        unique: true,
         required: true,
     },
     // username: {
@@ -45,8 +45,8 @@ const UserSchema = mongoose.Schema({
         max: 100
     },
     relationship:{
-        type: Array,
-        default:[]
+        type: Number,
+        default: 0
     },
     Post: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -56,7 +56,9 @@ const UserSchema = mongoose.Schema({
     //     type: Boolean,
     //     default: false,
     // }
-});
+},
+{timestamps: true}
+);
 
 // Define User Model
 const User = mongoose.model("User", UserSchema);
