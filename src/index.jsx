@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route, Switch, Link, useParams } from 'react-rou
 import Login from './Login.jsx'
 import Home from './Home.jsx'
 import Register_page from './Register_page.jsx'
-import Admin_user_management from './Admin_user_management.jsx'
 import Profile from './pages/Profile.jsx'
 import Search from './pages/Search.jsx'
 import Explore from './pages/Explore.jsx'
@@ -27,7 +26,6 @@ class App extends React.Component {
                   <Route exact path="/register" element={<Register_page />} />
                   <Route exact path="/profile" element={<Profile />} />
                   <Route exact path="/search" element={<Search />} />
-                  <Route exact path="/admin_user" element={<Admin_user_management />} />
                   <Route exact path="/explore" element={<Explore />} />
                   <Route exact path="/saved" element={<Saved />} />
                   <Route exact path="/post" element={<PostDetails />} />
