@@ -3,9 +3,19 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 
 
-//update user
+// Update User
 router.put("/:id", async (req, res) => {
-    if (req.body.userId === req.params.id || req.body.isAdmin) {
+  const { id } = req.params;
+  const { userId } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json("User not found");
+    }
+
+    if (userId === id || user.isAdmin) {
       if (req.body.password) {
         try {
           const salt = await bcrypt.genSalt(10);
@@ -14,32 +24,45 @@ router.put("/:id", async (req, res) => {
           return res.status(500).json(err);
         }
       }
+
       try {
-        const user = await User.findByIdAndUpdate(req.params.id, {
-          $set: req.body,
-        });
-        res.status(200).json("Account has been updated");
+        await User.findByIdAndUpdate(id, { $set: req.body });
+        return res.status(200).json("Account has been updated");
       } catch (err) {
         return res.status(500).json(err);
       }
     } else {
-      return res.status(403).json("You can update only your account!");
+      return res.status(403).json("You can update only your account or you must be an admin");
     }
-  });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
   
-  //delete user
-  router.delete("/:id", async (req, res) => {
-    if (req.body.userId === req.params.id || req.body.isAdmin) {
-      try {
-        await User.findByIdAndDelete(req.params.id);
-        res.status(200).json("Account has been deleted");
-      } catch (err) {
-        return res.status(500).json(err);
-      }
-    } else {
-      return res.status(403).json("You can delete only your account!");
+
+// Delete User
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.body;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json("User not found");
     }
-  });
+
+    if (userId === id || user.isAdmin) {
+      await User.findByIdAndDelete(id);
+      return res.status(200).json("Account has been deleted");
+    } else {
+      return res.status(403).json("You can delete only your account or you must be an admin");
+    }
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+  
   
   //get a user
   router.get("/:id", async (req, res) => {
@@ -52,7 +75,7 @@ router.put("/:id", async (req, res) => {
     }
   });
   
-//follow a user
+
 
 // Follow a user
 router.put("/:id/follow", async (req, res) => {
