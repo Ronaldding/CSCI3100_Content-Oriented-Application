@@ -1,0 +1,279 @@
+[{
+  "_id": {
+    "$oid": "660970232846199a041ae117"
+  },
+  "username": "aaa",
+  "email": "abc@gmail.com",
+  "password": "abc",
+  "profilePicture": "",
+  "followers": [],
+  "followings": [],
+  "blockedUsers": [],
+  "birthday": null,
+  "isAdmin": false,
+  "savedPosts": [],
+  "isPublic": true,
+  "suspended": false,
+  "suspensionReason": "",
+  "followRequests": [],
+  "createdAt": {
+    "$date": "2024-03-31T14:16:03.992Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-31T16:34:08.034Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6609753185abbcb4c20c6bde"
+  },
+  "username": "def",
+  "email": "def@gmail.com",
+  "password": "def",
+  "profilePicture": "",
+  "followers": [],
+  "followings": [],
+  "blockedUsers": [],
+  "birthday": null,
+  "isAdmin": false,
+  "savedPosts": [],
+  "isPublic": true,
+  "suspended": false,
+  "suspensionReason": "",
+  "followRequests": [],
+  "createdAt": {
+    "$date": "2024-03-31T14:37:37.985Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-31T14:37:37.985Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660a8b371b3a589057d28e48"
+  },
+  "username": "qwe",
+  "email": "qwe@gmail.com",
+  "password": "qwe",
+  "profilePicture": "",
+  "followers": [],
+  "followings": [],
+  "blockedUsers": [],
+  "birthday": null,
+  "isAdmin": false,
+  "savedPosts": [],
+  "isPublic": true,
+  "suspended": false,
+  "suspensionReason": "",
+  "followRequests": [],
+  "createdAt": {
+    "$date": "2024-04-01T10:23:51.522Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-01T10:23:51.522Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660a8b371b3a589057d28e49"
+  },
+  "username": "asd",
+  "email": "asd@gmail.com",
+  "password": "asd",
+  "profilePicture": "",
+  "followers": [],
+  "followings": [],
+  "blockedUsers": [],
+  "birthday": null,
+  "isAdmin": false,
+  "savedPosts": [],
+  "isPublic": true,
+  "suspended": false,
+  "suspensionReason": "",
+  "followRequests": [],
+  "createdAt": {
+    "$date": "2024-04-01T10:23:51.522Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-01T10:23:51.522Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660a8b371b3a589057d28e4a"
+  },
+  "username": "ert",
+  "email": "ert@gmail.com",
+  "password": "ert",
+  "profilePicture": "",
+  "followers": [],
+  "followings": [],
+  "blockedUsers": [],
+  "birthday": null,
+  "isAdmin": false,
+  "savedPosts": [],
+  "isPublic": false,
+  "suspended": false,
+  "suspensionReason": "",
+  "followRequests": [],
+  "createdAt": {
+    "$date": "2024-04-01T10:23:51.522Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-01T10:23:51.522Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660ae712feb286cd218a7e5c"
+  },
+  "username": "following",
+  "email": "following@gmail.com",
+  "password": "following",
+  "profilePicture": "",
+  "followers": [],
+  "followings": [
+    "660970232846199a041ae117",
+    "6609753185abbcb4c20c6bde"
+  ],
+  "blockedUsers": [],
+  "birthday": null,
+  "isAdmin": false,
+  "savedPosts": [],
+  "isPublic": true,
+  "suspended": false,
+  "suspensionReason": "",
+  "followRequests": [],
+  "createdAt": {
+    "$date": "2024-04-01T16:55:46.689Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-01T16:55:46.689Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660ae74ad07569eee385de03"
+  },
+  "username": "following1",
+  "email": "following1@gmail.com",
+  "password": "following1",
+  "profilePicture": "",
+  "followers": [],
+  "followings": [
+    "660ae712feb286cd218a7e5c"
+  ],
+  "blockedUsers": [],
+  "birthday": null,
+  "isAdmin": false,
+  "savedPosts": [],
+  "isPublic": true,
+  "suspended": false,
+  "suspensionReason": "",
+  "followRequests": [],
+  "createdAt": {
+    "$date": "2024-04-01T16:56:42.750Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-01T16:56:42.750Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660af1582eb0478eb94299c1"
+  },
+  "username": "following2",
+  "email": "following2@gmail.com",
+  "password": "following2",
+  "profilePicture": "",
+  "followers": [],
+  "followings": [
+    "660ae712feb286cd218a7e5c",
+    "6609753185abbcb4c20c6bde"
+  ],
+  "blockedUsers": [],
+  "birthday": null,
+  "isAdmin": false,
+  "savedPosts": [],
+  "isPublic": true,
+  "suspended": false,
+  "suspensionReason": "",
+  "followRequests": [],
+  "createdAt": {
+    "$date": "2024-04-01T17:39:36.577Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-01T17:39:36.577Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660bbc82b22a21306d2e9d6e"
+  },
+  "username": "following request",
+  "email": "followingrequest@gmail.com",
+  "password": "followingrequest",
+  "profilePicture": "",
+  "followers": [],
+  "followings": [],
+  "blockedUsers": [],
+  "birthday": null,
+  "isAdmin": false,
+  "savedPosts": [],
+  "isPublic": true,
+  "suspended": false,
+  "suspensionReason": "",
+  "followRequests": [
+    {
+      "$oid": "660ae712feb286cd218a7e5c"
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-04-02T08:06:26.575Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-02T08:06:26.575Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660bc1d8452164341d91ae96"
+  },
+  "username": "following request2",
+  "email": "followingrequest2@gmail.com",
+  "password": "followingrequest2",
+  "profilePicture": "",
+  "followers": [],
+  "followings": [],
+  "blockedUsers": [],
+  "birthday": null,
+  "isAdmin": false,
+  "savedPosts": [],
+  "isPublic": true,
+  "suspended": false,
+  "suspensionReason": "",
+  "followRequests": [
+    {
+      "$oid": "660ae712feb286cd218a7e5c"
+    },
+    {
+      "$oid": "660bbc82b22a21306d2e9d6e"
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-04-02T08:29:12.792Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-02T08:29:12.792Z"
+  },
+  "__v": 0
+}]
