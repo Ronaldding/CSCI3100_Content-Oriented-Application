@@ -1,6 +1,6 @@
 export const Users = [
   {
-    id:11,
+    id:1,
     profilePicture: "assets/person/1.jpeg",
     username: "Safak Kocaoglu",
   },

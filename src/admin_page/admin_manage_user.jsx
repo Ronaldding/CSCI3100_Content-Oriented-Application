@@ -1,11 +1,52 @@
 import Topbar_admin from '../components/topbar_admin.jsx'
 import React, { Component } from 'react';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import './admin_managment_user.css'
 import {Users} from '../dummyData.js'
 
 class Admin_manage_user extends React.Component {
     constructor(props) {
       super(props);
+      this.state = {user_list:[]}
+      this.del_user = this.del_user.bind(this)
+      this.suspend_user = this.suspend_user.bind(this)
+      this.unsuspend_user = this.unsuspend_user.bind(this)
+      this.update_user = this.update_user.bind(this)
+    }
+    componentDidMount() {
+        this.user_info();
+    }
+
+    user_info(){
+        const user_infomation = fetch('http://localhost:8800/admin_manage_user', {method: 'GET'})
+        .then((response => response.json()))
+        .then((data =>{
+            this.setState({user_list: data})
+            console.log(data)
+          }))
+        .catch((err) => console.log(err))
+        }
+    
+    del_user(id){
+        const delete_user = fetch(`http://localhost:8800/admin_manage_user/${id}`, {method: 'DELETE'})
+        .then(data => this.componentDidMount())
+    }
+
+    suspend_user(id){
+        const susp_user = fetch(`http://localhost:8800/admin_manage_user/${id}/suspend`, {method: 'PUT'})
+        .then(data => this.componentDidMount())
+    }
+
+    unsuspend_user(id){
+        const unsusp_user = fetch(`http://localhost:8800/admin_manage_user/${id}/unsuspend`, {method: 'PUT'})
+        .then(data => this.componentDidMount())
+    }
+
+    update_user(){
+        <Popup trigger={<button> Trigger</button>} position="right center">
+            <div>Popup content here !!</div>
+        </Popup>
     }
       render() {
           return(
@@ -29,14 +70,28 @@ class Admin_manage_user extends React.Component {
                             </tr>
                             </thead>
                             <tbody>
-                            {Users.map((user, index) => (
+                            {this.state.user_list.map((user, index) => (
                             <tr>
-                            <td style={{width: "15%"}}>{user.id}</td>
+                            <td style={{width: "15%"}}>{user._id}</td>
                             <td style={{width: "55%"}}>{user.username}</td>
                             <td style={{width: "30%"}}>
-                                <button className='btn btn-primary'>Edit</button>
-                                <button className='btn btn-warning'>Suspend</button>
-                                <button className='btn btn-danger'>Delete</button>
+                                <Popup trigger={<button className='btn btn-primary' >Edit</button>} modal nested>
+                                    {close => (
+                                    <div className="modal">
+                                        <button className="close" onClick={close}>
+                                            &time;
+                                        </button>
+                                        <div className="title">
+                                            <h4>Update user:</h4>
+                                        </div>
+                                        <div className="block">
+                                            <h4>Update user:</h4>
+                                        </div>
+                                    </div>
+                                    )}
+                                </Popup>
+                                {!user.suspended? (<button className='btn btn-warning' onClick={() => this.suspend_user(user._id)}>Suspend</button>): (<button className='btn btn-warning' onClick={() => this.unsuspend_user(user._id)}>Unsuspend</button>)}
+                                <button className='btn btn-danger' onClick={() => this.del_user(user._id)}>Delete</button>
                             </td>
                             </tr>
                             ))}

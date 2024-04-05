@@ -3,6 +3,8 @@ const router = require("express").Router();
 const Post = require("./Post");
 const User = require("./User");
 const mongoose = require('mongoose');
+const cors = require('cors');
+router.use(cors());
 // const jwt = require('jsonwebtoken')
 // const dotenv = require("dotenv");
 // dotenv.config();
@@ -13,7 +15,7 @@ const mongoose = require('mongoose');
 // Read all Users
 router.get('/admin_manage_user', async (req, res) => { //http://localhost:8800/admin_manage_user
     try {
-        const users = await User.find({}, 'id username'); // Retrieve only id and username fields
+        const users = await User.find({}, 'id username suspended email password'); // Retrieve only id, suspended, email, password and username fields
         res.status(200).json(users);
     }catch (err) {
         res.status(500).json(err);
