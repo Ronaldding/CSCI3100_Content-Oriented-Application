@@ -14,15 +14,11 @@ const Profile = ({ username }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      try {
-        const res = await axios.get(`/users?username=${username}`);
-        setUser(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+      const res = await axios.get("http://localhost:8800/admin_manage_user/660970232846199a041ae117");
+      setUser(res.data); // Store the JSON data in the state variable
+    }
     fetchUser();
-  }, [username]);
+  }, []);
 
   const handleEditProfileClick = () => {
     setIsEditProfileOpen(true);
@@ -55,7 +51,7 @@ const Profile = ({ username }) => {
         <div className="profileInfo">
           <div className="profileNameAndId">
             <div className="profileName">
-              <label>{user.name}</label>
+              <label>{user.username}</label>
             </div>
             <div className="profileId">
               <label>{user.username}</label>
@@ -65,7 +61,7 @@ const Profile = ({ username }) => {
             <div
               className="profilepic"
               style={{
-                backgroundImage: `url(${user.profilePic})`,
+                backgroundImage: `url(${user.profilePicture == "" ? "/assets/person/1.jpeg" : user.profilePicture})`,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -79,7 +75,7 @@ const Profile = ({ username }) => {
           </div>
         </div>
         <div className="profileBio">
-          <label>{user.bio}</label>
+          <label>{user.email}</label>
         </div>
         <div className="profileFollowersAndLink">
           <div className="profileFollowersContainer">
@@ -87,7 +83,7 @@ const Profile = ({ username }) => {
               <div
                 className="followerprofilepic"
                 style={{
-                  backgroundImage: `url(${user.profilePic})`,
+                  backgroundImage: `url(${user.profilePicture == "" ? "assets/person/1.jpeg" : user.profilePicture})`,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -101,7 +97,7 @@ const Profile = ({ username }) => {
               <div
                 className="followerprofilepic"
                 style={{
-                  backgroundImage: `url(${user.profilePic})`,
+                  backgroundImage: `url(${user.profilePicture == "" ? "assets/person/1.jpeg" : user.profilePicture})`,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -114,7 +110,7 @@ const Profile = ({ username }) => {
               ></div>
             </div>
             <div className="profileFollowers">
-              <span className="followersNumbers">{user.followers}</span>
+              <span className="followersNumbers">{user.followers.length}</span>
               <p>&emsp;Followers</p>
             </div>
           </div>
@@ -159,7 +155,6 @@ const Profile = ({ username }) => {
           {/* Render posts */}
         </div>
       )}
-     ```jsx
       {activeButton === 'followers' && (
         <div className="profileFollowers">
           {/* Render followers */}
@@ -170,7 +165,15 @@ const Profile = ({ username }) => {
           {/* Render following */}
         </div>
       )}
-      {isEditProfileOpen && <EditProfile handleCloseEditProfile={handleCloseEditProfile} />}
+      {isEditProfileOpen && (
+        <EditProfile
+            onClose={handleCloseEditProfile}
+            username={user.username}
+            _id={user._id}
+            email={user.email}
+            profilePicture={user.profilePic}
+        />
+        )}
     </div>
   );
 };

@@ -1,10 +1,17 @@
 import React from 'react';
 import { ImagesOutline, CloseOutline } from 'react-ionicons';
 import './editProfile.css';
+import axios from 'axios';
 
 class EditProfile extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: this.props.username,
+      userId: this.props._id,
+      email: this.props.email,
+      profilePic: this.props.profilePicture ? this.props.profilePicture : "assets/person/1.jpeg"
+    };
   }
 
   handleNameChange = (event) => {
@@ -15,8 +22,8 @@ class EditProfile extends React.Component {
     this.setState({ userId: event.target.value });
   };
 
-  handleBioChange = (event) => {
-    this.setState({ bio: event.target.value });
+  handleEmailChange = (event) => {
+    this.setState({ email: event.target.value });
   };
 
   handleProfilePicChange = (event) => {
@@ -27,6 +34,28 @@ class EditProfile extends React.Component {
     };
     reader.readAsDataURL(file);
   };
+
+  handleSaveBtn = () => {
+    const { profilePicture ,name, email } = this.state;
+    const updatedUser = {
+      profilePicture: profilePicture,
+      username: name,
+      email: email
+    };
+  
+    axios.put(`http://localhost:8800/admin_manage_user/${this.props._id}`, updatedUser)
+      .then((res) => {
+        console.log(res.data); // Handle success response
+        this.props.onClose(); // Close the edit profile popup
+        window.location.reload(); // Refresh the page
+      })
+      .catch((err) => {
+        console.error(err); // Handle error response
+        this.props.onClose();
+        window.location.reload(); // Refresh the page
+      });
+  };
+
 
   render() {
     return (
@@ -41,7 +70,7 @@ class EditProfile extends React.Component {
               <label className="profilePictureLabel" htmlFor="profilePicUpload">
                 <img
                   className="profilePicture"
-                  src={this.props.profileInfo.profilePic}
+                  src={this.state.profilePic}
                   alt="Profile"
                 />
                 <input
@@ -59,30 +88,31 @@ class EditProfile extends React.Component {
                 <input
                   type="text"
                   id="nameInput"
-                  value={this.props.profileInfo.name}
+                  value={this.state.name}
                   onChange={this.handleNameChange}
                 />
               </div>
-              <div className="profileField">
+              {/* <div className="profileField">
                 <label htmlFor="userIdInput">User ID:</label>
                 <input
                   type="text"
                   id="userIdInput"
-                  value={this.props.profileInfo.id}
+                  value={this.state.userId}
                   onChange={this.handleUserIdChange}
                 />
-              </div>
+              </div> */}
               <div className="profileField">
-                <label htmlFor="bioInput">Bio:</label>
-                <textarea
-                  id="bioInput"
-                  value={this.props.profileInfo.bio}
-                  onChange={this.handleBioChange}
+                <label htmlFor="emailInput">Email:</label>
+                <input
+                  type="email"
+                  id="emailInput"
+                  value={this.state.email}
+                  onChange={this.handleEmailChange}
                 />
               </div>
             </div>
           </div>
-          <button className="saveButton">Save</button>
+          <button className="saveButton" onClick={this.handleSaveBtn}>Save</button>
         </div>
       </div>
     );
