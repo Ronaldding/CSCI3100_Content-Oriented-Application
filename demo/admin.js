@@ -118,7 +118,7 @@ router.put('/admin_manage_user/:id/unsuspend', async (req, res) => {
 // Read all post
 router.get('/admin_manage_post', async (req, res) => {
     try {
-        const posts = await Post.find();
+        const posts = await Post.find().populate('username').exec();
         res.status(200).json(posts);
     }catch (err) {
         res.status(500).json(err);
@@ -128,13 +128,13 @@ router.get('/admin_manage_post', async (req, res) => {
 // Read a post
 router.get('/admin_manage_post/:id', async (req, res) => {
     try {
-      const post = await Post.findById(req.params.id);
-      if (!post) {
-        return res.status(404).json('Post not found');
-      }
-      res.status(200).json(post);
+        const post = await Post.findById(req.params.id).populate('username').exec();
+        if (!post) {
+            return res.status(404).json('Post not found');
+        }
+        res.status(200).json(post);
     } catch (err) {
-      res.status(500).json(err);
+        res.status(500).json(err);
     }
 });
 
