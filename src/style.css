@@ -146,3 +146,11 @@
     font-weight: 500;
 }
 
+#message{
+    align-self: center;
+    color: rgb(237, 194, 23);
+    padding-top: 10px;
+    font-weight: 400;
+}
+
+
