@@ -1,18 +1,18 @@
 import Topbar_admin from '../components/topbar_admin.jsx'
 import React, { Component } from 'react';
 import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
 import './admin_managment_user.css'
 import {Users} from '../dummyData.js'
+import './user.css'
 
 class Admin_manage_user extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {user_list:[]}
+      this.state = {user_list:[], edit_user: false}
       this.del_user = this.del_user.bind(this)
       this.suspend_user = this.suspend_user.bind(this)
       this.unsuspend_user = this.unsuspend_user.bind(this)
-      this.update_user = this.update_user.bind(this)
+      this.Submit_Update = this.Submit_Update.bind(this)
     }
     componentDidMount() {
         this.user_info();
@@ -43,12 +43,28 @@ class Admin_manage_user extends React.Component {
         .then(data => this.componentDidMount())
     }
 
-    update_user(){
-        <Popup trigger={<button> Trigger</button>} position="right center">
-            <div>Popup content here !!</div>
-        </Popup>
+    Submit_Update = async(event,id) =>{
+        event.preventDefault();
+        const Username = document.getElementById('Username').value;
+        const Email =  document.getElementById('Email').value;
+        const Password =  document.getElementById('Password').value;
+        const data ={
+            username: Username,
+            email: Email,
+            password: Password
+          }
+        const response = await fetch(`http://localhost:8800/admin_manage_user/${id}`, { 
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+         })
+         .then((response) => this.componentDidMount())
+         
     }
-      render() {
+
+    render() {
           return(
             <div className="back">
                 <div>
@@ -66,32 +82,45 @@ class Admin_manage_user extends React.Component {
                             <tr>
                                 <th>ID</th>
                                 <th>USERNAME</th>
+                                <th>EMAIL</th>
+                                <th>PASSWORD</th>
                                 <th>ACTION</th>
                             </tr>
                             </thead>
                             <tbody>
                             {this.state.user_list.map((user, index) => (
                             <tr>
-                            <td style={{width: "15%"}}>{user._id}</td>
-                            <td style={{width: "55%"}}>{user.username}</td>
-                            <td style={{width: "30%"}}>
-                                <Popup trigger={<button className='btn btn-primary' >Edit</button>} modal nested>
-                                    {close => (
-                                    <div className="modal">
-                                        <button className="close" onClick={close}>
-                                            &time;
+                            <td style={{width: "auto"}}>{user._id}</td>
+                            <td style={{width: "auto"}}>{user.username}</td>
+                            <td style={{width: "auto"}}>{user.email}</td>
+                            <td style={{width: "auto"}}>{user.password}</td>
+                            <td style={{width: "auto"}}>
+                                <div className='popup'>
+                                <Popup trigger={<button className='btn btn-primary'>Edit</button>} onClose={()=>console.log("close")} modal>
+                                    {close => 
+                                    <div className='popup_block'> 
+                                       <div className="inner_block">
+                                        <button className='close_button' onClick={close}>
+                                            &times;
                                         </button>
-                                        <div className="title">
-                                            <h4>Update user:</h4>
+                                        <h3 style={{fontWeight: "800"}}>Update form:</h3>
+                                        <form id="user_update_form" onSubmit={event => {this.Submit_Update(event, user._id);close()}}>
+                                        <label for="Username" style={{display: "inline-block",width: "100px",textAlign: "right"}}>Username:</label>&nbsp;
+                                        <input type="text" id="Username" name="Username" defaultValue={user.username}  required></input>&nbsp;
+                                        <br/>
+                                        <label for="Email" style={{display: "inline-block",width: "100px",textAlign: "right"}}>Email:</label>&nbsp;
+                                        <input type="text" id="Email" name="Email" defaultValue={user.email} required></input>
+                                        <br/>
+                                        <label for="Password" style={{display: "inline-block",width: "100px",textAlign: "right"}}>Password:</label>&nbsp;
+                                        <input type="text" id="Password" name="Password" defaultValue={user.password}  required></input>
+                                        <br/>
+                                        <input type="submit" value="Submit" id="submit" ></input>
+                                        </form>
                                         </div>
-                                        <div className="block">
-                                            <h4>Update user:</h4>
-                                        </div>
-                                    </div>
-                                    )}
-                                </Popup>
+                                    </div>}
+                                    </Popup>
                                 {!user.suspended? (<button className='btn btn-warning' onClick={() => this.suspend_user(user._id)}>Suspend</button>): (<button className='btn btn-warning' onClick={() => this.unsuspend_user(user._id)}>Unsuspend</button>)}
-                                <button className='btn btn-danger' onClick={() => this.del_user(user._id)}>Delete</button>
+                                <button className='btn btn-danger' onClick={() => this.del_user(user._id)}>Delete</button></div>
                             </td>
                             </tr>
                             ))}

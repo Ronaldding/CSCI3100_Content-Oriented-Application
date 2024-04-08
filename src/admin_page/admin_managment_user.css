@@ -1,11 +1,12 @@
 
 .back {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     min-height: 100vh;
     min-width: max-content;
     color: white;
     margin: 0;
 }
+
 
 .container {
     align-content: center;
