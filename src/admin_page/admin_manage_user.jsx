@@ -43,17 +43,19 @@ class Admin_manage_user extends React.Component {
         .then(data => this.componentDidMount())
     }
 
-    Submit_Update = async(event,id) =>{
+    Submit_Update = async(event,id, user_password) =>{
         event.preventDefault();
         const Username = document.getElementById('Username').value;
         const Email =  document.getElementById('Email').value;
         const Password =  document.getElementById('Password').value;
-        const data ={
+        let data ={
             username: Username,
             email: Email,
-            password: Password
           }
-          console.log(data)
+        if (user_password != Password){
+            data['password'] =  Password;
+        }
+
         const response = await fetch(`http://localhost:8800/admin_manage_user/${id}`, { 
             method: 'PUT',
             headers: {
@@ -105,7 +107,7 @@ class Admin_manage_user extends React.Component {
                                             &times;
                                         </button>
                                         <h3 style={{fontWeight: "800"}}>Update form:</h3>
-                                        <form id="user_update_form" onSubmit={event => {this.Submit_Update(event, user._id);close()}}>
+                                        <form id="user_update_form" onSubmit={event => {this.Submit_Update(event, user._id, user.password);close()}}>
                                         <label for="Username" style={{display: "inline-block",width: "100px",textAlign: "right"}}>Username:</label>&nbsp;
                                         <input type="text" id="Username" name="Username" defaultValue={user.username}  required></input>&nbsp;
                                         <br/>

@@ -26,13 +26,13 @@ class Register_block extends React.Component {
 
     Register =  async(event) =>{
         event.preventDefault();
-        const email = document.getElementById('email').value;
-        const login_username =  document.getElementById('login_username').value;
-        const password =  document.getElementById('password').value;
+        const register_email = document.getElementById('register_email').value;
+        const register_username =  document.getElementById('register_username').value;
+        const register_password =  document.getElementById('register_password').value;
         const data ={
-            username: login_username,
-            email: email,
-            password: password
+            username: register_username,
+            email: register_email,
+            password: register_password
           }
           console.log(data)
         const response = await fetch('http://localhost:8800/register', { 
@@ -42,20 +42,27 @@ class Register_block extends React.Component {
             },
             body: JSON.stringify(data)
          })
-         .then(response => 
-            {   console.log(response)
-                if(response.status == 400){
-                    let message = response.message;
-                    console.log(message)
+         .then(response => {
+            const status = response.status;
+            return response.json().then(parsed => [status, parsed]);
+          })
+         .then(list => 
+            {
+                if(list[0] == 400){
+                    let message = list[1].message;
+                    this.setState({message: message})
                     this.setState({show_message:true})
                     setTimeout(() => {
-                        this.setState({ show_message: false });},5000)
-                    this.setState({message: message})
-                } else if (response.status == 200) {
+                        this.setState({ show_message: false });},3000)      
+                } else if (list[0] == 200) {
                     let message = "Register successful!"
-                    console.log(message)
-                    this.setState({show_message:true})
                     this.setState({message: message})
+                    this.setState({show_message:true})
+                    setTimeout(() => {
+                        this.setState({ show_message: false });},3000)
+                        setTimeout(() => {
+                            window.location.href = 'http://localhost:3000/login';
+                          }, 3000);
                 }
             })
     }
@@ -69,22 +76,22 @@ class Register_block extends React.Component {
                             <span className="icon">
                                 <MailOutline color={'#ffffff'}  />
                             </span>
-                            <input type="email" id="email" name="email" required/>
-                            <label for="email">Email</label>
+                            <input type="email" id="register_email" name="register_email" required/>
+                            <label for="register_email">Email</label>
                         </div>
                         <div className='input_container '>
                             <span class='icon'>
                             <PersonCircle color={'#ffffff'}   />
                             </span>
-                            <input type='text' id='login_username' name="login_username" required/>
-                            <label for="login_username">Username</label>
+                            <input type='text' id='register_username' name="register_username" required/>
+                            <label for="register_username">Username</label>
                         </div>
                         <div className="input_container">
                             <span className="icon">
                                 <LockClosedOutline color={'#ffffff'}  />
                             </span>
-                            <input type="password" id='password' name='password' required/>
-                            <label for="password">Password</label>
+                            <input type="password" id='register_password' name='register_password' required/>
+                            <label for="register_password">Password</label>
                         </div>
                         {this.state.show_message &&<h5 id='message'>{this.state.message}</h5>}
                         <button type='submit' className="button">Register</button>
