@@ -5,10 +5,11 @@ import './user.css'
 import Popup from 'reactjs-popup';
 import Cookies from 'js-cookie';
 
+
 class Admin_manage_post extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {post_list:[]}
+      this.state = {post_list:[], check: false}
       this.del_post = this.del_post.bind(this)
       this.hided_post = this.hided_post.bind(this)
       this.unhided_post = this.unhided_post.bind(this)
@@ -17,10 +18,16 @@ class Admin_manage_post extends React.Component {
 
     componentDidMount() {
         this.post_info();
-        let name = sessionStorage.getItem('userID')
-        console.log(name)
+        let check = sessionStorage.getItem('admin')
+        if(check == 'valid'){
+            this.setState({check: true})
+        }
+        window.addEventListener('beforeunload', () => {
+            sessionStorage.clear();
+          });
     }
 
+    
     post_info(){
         const post_infomation = fetch('http://localhost:8800/admin_manage_post', {method: 'GET'})
         .then((response => response.json()))
@@ -82,6 +89,7 @@ class Admin_manage_post extends React.Component {
 
     
       render() {
+        if(this.state.check){
           return(
             <div className="back">
                 <div>
@@ -97,7 +105,6 @@ class Admin_manage_post extends React.Component {
                         <table className='table table-dark table-hover'>
                             <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>USERNAME</th>
                                 <th>UPDATED_AT</th>
                                 <th>DESCRIPTION</th>
@@ -108,7 +115,6 @@ class Admin_manage_post extends React.Component {
                             <tbody>
                             {this.state.post_list.map((post, index) => (
                             <tr>
-                            <td style={{width: "auto"}}>{post._id}</td>
                             <td style={{width: "auto"}}>{post.username.username}</td>
                             <td style={{width: "auto"}}>{post.updatedAt}</td>
                             <td style={{width: "auto"}}>{post.desc}</td>
@@ -150,6 +156,11 @@ class Admin_manage_post extends React.Component {
                     </div>
                 </div>
             </div>
-          )}}
+        )} else {
+            return(
+                <h1>You have no permission to access this page!</h1>
+            )
+        }
+    }}
 
 export default Admin_manage_post

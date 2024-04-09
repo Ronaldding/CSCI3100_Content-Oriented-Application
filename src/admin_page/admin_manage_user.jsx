@@ -8,7 +8,7 @@ import './user.css'
 class Admin_manage_user extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {user_list:[], edit_user: false}
+      this.state = {user_list:[], edit_user: false, check: false}
       this.del_user = this.del_user.bind(this)
       this.suspend_user = this.suspend_user.bind(this)
       this.unsuspend_user = this.unsuspend_user.bind(this)
@@ -16,6 +16,13 @@ class Admin_manage_user extends React.Component {
     }
     componentDidMount() {
         this.user_info();
+        let check = sessionStorage.getItem('admin')
+        if(check == 'valid'){
+            this.setState({check: true})
+        }
+        window.addEventListener('beforeunload', () => {
+            sessionStorage.clear();
+          });
     }
 
     user_info(){
@@ -68,6 +75,7 @@ class Admin_manage_user extends React.Component {
     }
 
     render() {
+        if(this.state.check){
           return(
             <div className="back">
                 <div>
@@ -86,7 +94,6 @@ class Admin_manage_user extends React.Component {
                                 <th>ID</th>
                                 <th>USERNAME</th>
                                 <th>EMAIL</th>
-                                <th>PASSWORD</th>
                                 <th>ACTION</th>
                             </tr>
                             </thead>
@@ -96,7 +103,6 @@ class Admin_manage_user extends React.Component {
                             <td style={{width: "auto"}}>{user._id}</td>
                             <td style={{width: "auto"}}>{user.username}</td>
                             <td style={{width: "auto"}}>{user.email}</td>
-                            <td style={{width: "auto"}}>{user.password}</td>
                             <td style={{width: "auto"}}>
                                 <div className='popup'>
                                 <Popup trigger={<button className='btn btn-primary'>Edit</button>} onClose={()=>console.log("close")} modal>
@@ -133,6 +139,10 @@ class Admin_manage_user extends React.Component {
                     </div>
                 </div>
             </div>
-          )}}
+          )} else {
+            return(
+                <h1>You have no permission to access this page!</h1>
+            )
+          }}}
 
 export default Admin_manage_user

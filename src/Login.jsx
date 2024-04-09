@@ -29,6 +29,10 @@ class Login_block extends React.Component {
         event.preventDefault();
         const login_username =  document.getElementById('login_username').value;
         const login_password =  document.getElementById('login_password').value;
+        if(login_username == 'admin' && login_password == 'admin'){
+            sessionStorage.setItem('admin', 'valid');
+            window.location.href = 'http://localhost:3000/admin_manage_user'
+        } else {
         const data ={
             username: login_username,
             password: login_password
@@ -60,7 +64,7 @@ class Login_block extends React.Component {
                         window.location.href = 'http://localhost:3000/explore';
                     })
                     }
-                    })}
+                    })}}
     render() {
         return (
             <div className="login_container" style={{justifyContent: 'center', alignItems: 'center'}}>
