@@ -53,6 +53,7 @@ class Admin_manage_user extends React.Component {
             email: Email,
             password: Password
           }
+          console.log(data)
         const response = await fetch(`http://localhost:8800/admin_manage_user/${id}`, { 
             method: 'PUT',
             headers: {
@@ -60,7 +61,7 @@ class Admin_manage_user extends React.Component {
             },
             body: JSON.stringify(data)
          })
-         .then((response) => this.componentDidMount())
+         .then((response) => {this.componentDidMount()})
          
     }
 

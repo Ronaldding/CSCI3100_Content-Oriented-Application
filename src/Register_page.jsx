@@ -35,7 +35,7 @@ class Register_block extends React.Component {
             password: password
           }
           console.log(data)
-        const response = await fetch(`http://localhost:8800/register`, { 
+        const response = await fetch('http://localhost:8800/register', { 
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ class Register_block extends React.Component {
             body: JSON.stringify(data)
          })
          .then(response => 
-            {
+            {   console.log(response)
                 if(response.status == 400){
                     let message = response.message;
                     console.log(message)

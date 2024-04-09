@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const dotenv = require("dotenv");
 dotenv.config();
+const cors = require('cors');
+router.use(cors());
 
 //register
 // register
