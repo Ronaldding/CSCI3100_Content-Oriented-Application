@@ -29,7 +29,7 @@ class App extends React.Component {
                   <Route exact path="/search" element={<Search />} />
                   <Route exact path="/explore" element={<Explore />} />
                   <Route exact path="/saved" element={<Saved />} />
-                  <Route exact path="/post" element={<PostDetails />} />
+                  <Route exact path="/post/:id" element={<PostDetails />} />
                   <Route exact path="/admin_manage_user" element={<Admin_manage_user />} />
                   <Route exact path="/admin_manage_post" element={<Admin_manage_post />} />
                   <Route exact path="/notification" element={<Notification />} />
