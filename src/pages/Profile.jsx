@@ -6,19 +6,21 @@ import { Person } from 'react-ionicons';
 import Feed from '../components/Feed';
 import EditProfile from '../components/EditProfile';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const Profile = ({ username }) => {
   const [user, setUser] = useState(null);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [activeButton, setActiveButton] = useState('posts');
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get("http://localhost:8800/user/660a8b371b3a589057d28e48");
+      const res = await axios.get("http://localhost:8800/admin_manage_user/660970232846199a041ae117");
       setUser(res.data); // Store the JSON data in the state variable
     }
     fetchUser();
-  }, []);
+  }, [id]);
 
   const handleEditProfileClick = () => {
     setIsEditProfileOpen(true);
@@ -167,11 +169,11 @@ const Profile = ({ username }) => {
       )}
       {isEditProfileOpen && (
         <EditProfile
-            onClose={handleCloseEditProfile}
-            username={user.username}
-            _id={user._id}
-            email={user.email}
-            profilePicture={user.profilePic}
+          onClose={handleCloseEditProfile}
+          username={user.username}
+          _id={user._id}
+          email={user.email}
+          profilePicture={user.profilePicture} // Corrected prop name
         />
         )}
     </div>
