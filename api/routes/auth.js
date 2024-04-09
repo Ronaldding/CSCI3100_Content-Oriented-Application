@@ -1,6 +1,3 @@
-
-
-
 const router = require('express').Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
@@ -8,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const dotenv = require("dotenv");
 dotenv.config();
 
-//register
+// register
 // register
 router.post('/register', async (req, res) => {
   try {
