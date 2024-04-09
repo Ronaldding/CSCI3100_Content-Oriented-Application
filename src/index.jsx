@@ -25,7 +25,7 @@ class App extends React.Component {
                   <Route path="/" element={<Home />} />
                   <Route exact path="/login" element={<Login />} />
                   <Route exact path="/register" element={<Register_page />} />
-                  <Route exact path="/profile" element={<Profile />} />
+                  <Route exact path="/profile/:id" element={<Profile />} />
                   <Route exact path="/search" element={<Search />} />
                   <Route exact path="/explore" element={<Explore />} />
                   <Route exact path="/saved" element={<Saved />} />
@@ -39,6 +39,6 @@ class App extends React.Component {
           )
       }}
 
-  
-  const root = ReactDOM.createRoot(document.querySelector("#app"));
-  root.render(<App/>);
+      ReactDOM.render(<App />, document.getElementById('app'));
+//   const root = ReactDOM.createRoot(document.querySelector("#app"));
+//   root.render(<App/>);

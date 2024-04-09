@@ -21,6 +21,7 @@ const Topbar = () => {
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const location = useLocation();
+  const currentUserId = '660970232846199a041ae117';
 
   useEffect(() => {
     const currentUrl = location.pathname;
@@ -127,8 +128,8 @@ const Topbar = () => {
                     />
                 )}
             </Link>
-            <Link to='/profile' className="topbarIconItem">
-              {location.pathname.includes('/profile') ? (
+            <Link to={`/profile/${currentUserId}`} className="topbarIconItem">
+              {location.pathname.includes(`/profile`) ? (
                     <Person
                     color="#ffffff"
                     background="transparent"

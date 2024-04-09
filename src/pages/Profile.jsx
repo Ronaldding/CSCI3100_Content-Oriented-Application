@@ -13,12 +13,22 @@ const Profile = ({ username }) => {
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [activeButton, setActiveButton] = useState('posts');
   const { id } = useParams();
+  const [isFollowing, setIsFollowing] = useState(false);
+  const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get("http://localhost:8800/admin_manage_user/660970232846199a041ae117");
-      setUser(res.data); // Store the JSON data in the state variable
-    }
+      try {
+        const res = await axios.get(`http://localhost:8800/user/${id}`);
+        setUser(res.data);
+         // Check if the followers array includes the currentUserId
+         setIsFollowing(res.data.followers.includes(currentUserId));
+        console.log(res);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
     fetchUser();
   }, [id]);
 
@@ -33,9 +43,33 @@ const Profile = ({ username }) => {
   const handleButtonClick = (button) => {
     setActiveButton(button);
   };
+  
+  const handleFollowClick = async () => {
+    try {
+      const url = `http://localhost:8800/user/${id}/follow`;
 
-  const handleFollowClick = () => {
-    // Handle follow click logic
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userId: currentUserId
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log(data); // Log the response if needed
+        setIsFollowing(true);
+      } else {
+        console.error(data); // Log the error response if needed
+      }
+    } catch (error) {
+      console.error('An error occurred while making the follow request:', error);
+      // Handle error if needed
+    }
   };
 
   const handleMessageClick = () => {
@@ -122,7 +156,7 @@ const Profile = ({ username }) => {
         </div>
         <div className="followAndMessage">
           <button className="editProfileButton" onClick={handleFollowClick}>
-            Follow
+            {isFollowing ? 'Following' : 'Follow'}
           </button>
           <button className="editProfileButton" onClick={handleMessageClick}>
             Message
