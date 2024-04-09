@@ -6,6 +6,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 const cors = require('cors');
 router.use(cors());
+const cookieParser = require('cookie-parser');
+
 
 // register
 // register
@@ -95,10 +97,21 @@ router.post('/login', async (req, res) => {
     const accessToken = generateAccessToken(user);
     const refreshToken = jwt.sign({ username: user.username }, process.env.REFRESH_TOKEN_SECRET);
     refreshTokens.push(refreshToken);
+    res.cookie('myCookie', 'cookieValue', { maxAge: 900000, httpOnly: true });
     res.status(200).json({ accessToken, refreshToken });
-
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+
+router.get('/login/:username', async (req, res) => {
+  try {
+    const username = req.params.username
+    const user = await User.findOne({username});
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

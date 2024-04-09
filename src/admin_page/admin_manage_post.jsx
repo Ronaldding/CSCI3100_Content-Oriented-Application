@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './admin_managment_user.css'
 import './user.css'
 import Popup from 'reactjs-popup';
+import Cookies from 'js-cookie';
 
 class Admin_manage_post extends React.Component {
     constructor(props) {
@@ -16,6 +17,8 @@ class Admin_manage_post extends React.Component {
 
     componentDidMount() {
         this.post_info();
+        let name = sessionStorage.getItem('userID')
+        console.log(name)
     }
 
     post_info(){

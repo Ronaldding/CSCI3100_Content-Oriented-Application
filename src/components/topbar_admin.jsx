@@ -16,7 +16,7 @@ class Topbar_admin_component extends React.Component {
     return(
         <div className="topbarContainer_admin">
             <div className="topbaricon_admin">
-            <Link to="/">
+            <Link to="/explore">
             <button
               className="topbarLogo"
               style={{

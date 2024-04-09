@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import login_background from './background3.jpg';
 import './style.css';
 import { PersonCircle, LockClosedOutline } from 'react-ionicons'
+import Cookies from 'js-cookie'
+
 
 class Login extends React.Component {
     render(){
@@ -21,6 +23,7 @@ class Login_block extends React.Component {
         this.Login = this.Login.bind(this)
         this.state = {show_message:false, message: "hello"}
     }
+
 
     Login =  async(event) =>{
         event.preventDefault();
@@ -49,10 +52,15 @@ class Login_block extends React.Component {
                     setTimeout(() => {
                         this.setState({ show_message: false });},3000)      
                 } else if (list[0] == 200) {
-                    window.location.href = 'http://localhost:3000/explore';
-                }
-            })
-    }
+                    const cookie_set = fetch(`http://localhost:8800/login/${login_username}`, {method: 'GET'})
+                    .then(data => data.json())
+                    .then(data =>    
+                    {             
+                        sessionStorage.setItem('userID', data._id);
+                        window.location.href = 'http://localhost:3000/explore';
+                    })
+                    }
+                    })}
     render() {
         return (
             <div className="login_container" style={{justifyContent: 'center', alignItems: 'center'}}>

@@ -49,6 +49,7 @@ const Topbar = () => {
     // TODO: Clear token and perform any necessary logout actions
     // Example: Clear token from local storage
     localStorage.removeItem("token");
+    sessionStorage.removeItem("username")
   }
 
   return (
