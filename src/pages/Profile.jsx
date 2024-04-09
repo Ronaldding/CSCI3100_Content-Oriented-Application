@@ -154,17 +154,20 @@ const Profile = ({ username }) => {
             <Person color={'#ffffff'} height="30px" width="30px" />
           </div>
         </div>
-        <div className="followAndMessage">
-          <button className="editProfileButton" onClick={handleFollowClick}>
-            {isFollowing ? 'Following' : 'Follow'}
+        {currentUserId != id ? (
+          <div className="followAndMessage">
+            <button className="editProfileButton" onClick={handleFollowClick}>
+              {isFollowing ? 'Following' : 'Follow'}
+            </button>
+            <button className="editProfileButton" onClick={handleMessageClick}>
+              Message
+            </button>
+          </div>
+          ):(
+            <button className="editProfileButton" onClick={handleEditProfileClick}>
+            Edit profile
           </button>
-          <button className="editProfileButton" onClick={handleMessageClick}>
-            Message
-          </button>
-        </div>
-        <button className="editProfileButton" onClick={handleEditProfileClick}>
-          Edit profile
-        </button>
+        )}
         <div className="profileSelection">
           <button
             className={`profileButton ${activeButton === 'posts' ? 'active' : ''}`}
