@@ -5,7 +5,7 @@ const cors = require('cors');
 router.use(cors());
 
 // Update User
-router.put("/:id", async (req, res) => {
+router.put("/user/:id", async (req, res) => {
   const { id } = req.params;
   const { userId } = req.body;
 
@@ -42,7 +42,7 @@ router.put("/:id", async (req, res) => {
   
 
 // Delete User
-router.delete("/:id", async (req, res) => {
+router.delete("/user/:id", async (req, res) => {
   const { id } = req.params;
   const { userId } = req.body;
 
@@ -66,7 +66,7 @@ router.delete("/:id", async (req, res) => {
   
   
   //get a user
-  router.get("/:id", async (req, res) => {
+  router.get("/user/:id", async (req, res) => {
     try {
       const user = await User.findById(req.params.id);
       const { password, updatedAt, ...other } = user._doc;
@@ -79,7 +79,7 @@ router.delete("/:id", async (req, res) => {
 
 
 // Follow a user
-router.put("/:id/follow", async (req, res) => {
+router.put("/user/:id/follow", async (req, res) => {
   const { userId } = req.body;
   const { id } = req.params;
 
@@ -115,7 +115,7 @@ router.put("/:id/follow", async (req, res) => {
   }
 });
 // Accept follower request
-router.put("/:id/accept-follower", async (req, res) => {
+router.put("/user/:id/accept-follower", async (req, res) => {
   const { followerId } = req.body;
   const { id } = req.params;
 
@@ -143,7 +143,7 @@ router.put("/:id/accept-follower", async (req, res) => {
 });
   //unfollow a user
   
-  router.put("/:id/unfollow", async (req, res) => {
+  router.put("/user/:id/unfollow", async (req, res) => {
       if (req.body.userId !== req.params.id) {
         try {
           const user = await User.findById(req.params.id);
@@ -163,7 +163,7 @@ router.put("/:id/accept-follower", async (req, res) => {
       }
     });
 // Block a user
-router.put("/:id/block", async (req, res) => {
+router.put("/user/:id/block", async (req, res) => {
   if (req.params.id !== req.body.userId) {
     try {
       const userToBlock = await User.findById(req.params.id);
@@ -183,7 +183,7 @@ router.put("/:id/block", async (req, res) => {
 });
 
 // Unblock a user
-router.put("/:id/unblock", async (req, res) => {
+router.put("/user/:id/unblock", async (req, res) => {
   try {
     const userToUnblock = await User.findById(req.params.id);
     const currentUser = await User.findById(req.body.userId);
@@ -198,7 +198,7 @@ router.put("/:id/unblock", async (req, res) => {
   }
 });
 // Set account as public or not
-router.put("/:id/public", async (req, res) => {
+router.put("/user/:id/public", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
 
@@ -221,7 +221,7 @@ router.put("/:id/public", async (req, res) => {
   }
 });
 // Suspend a user
-router.put("/:id/suspend", async (req, res) => {
+router.put("/user/:id/suspend", async (req, res) => {
   try {
     const adminUser = await User.findById(req.body.userId);
     if (!adminUser) {
@@ -247,7 +247,7 @@ router.put("/:id/suspend", async (req, res) => {
   }
 });
 // Unsuspend a user
-router.put("/:id/unsuspend", async (req, res) => {
+router.put("/user/:id/unsuspend", async (req, res) => {
   try {
     const adminUser = await User.findById(req.body.userId);
     if (!adminUser) {

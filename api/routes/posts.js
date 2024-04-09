@@ -5,7 +5,7 @@ const cors = require('cors');
 router.use(cors());
 //create a post
 
-router.post("/", async (req, res) => {
+router.post("/post", async (req, res) => {
   const newPost = new Post(req.body);
   try {
     const savedPost = await newPost.save();
@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
 });
 //update a post
 
-router.put("/:id", async (req, res) => {
+router.put("/post/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     const user = await User.findById(req.body.userId);
@@ -33,7 +33,7 @@ router.put("/:id", async (req, res) => {
 
 
 //delete a post
-router.delete("/:id", async (req, res) => {
+router.delete("/post/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     const user = await User.findById(req.body.userId);
@@ -54,7 +54,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 // Hide / Unhide a post
-router.put("/:id/hide", async (req, res) => {
+router.put("/post/:id/hide", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     const user = await User.findById(req.body.userId);
@@ -81,7 +81,7 @@ router.put("/:id/hide", async (req, res) => {
 });
 //like / dislike a post
 
-router.put("/:id/like", async (req, res) => {
+router.put("/post/:id/like", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post.likes.includes(req.body.userId)) {
@@ -97,7 +97,7 @@ router.put("/:id/like", async (req, res) => {
 });
 //get a post
 
-router.get("/:id", async (req, res) => {
+router.get("/post/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     res.status(200).json(post);
@@ -108,7 +108,7 @@ router.get("/:id", async (req, res) => {
 
 //get timeline posts by userid
 
-router.get("/timeline/:userId", async (req, res) => {
+router.get("/post/timeline/:userId", async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.userId);
     const userPosts = await Post.find({ userId: currentUser._id });
@@ -123,7 +123,7 @@ router.get("/timeline/:userId", async (req, res) => {
   }
 });
 // get all timeline posts
-router.get("/all/timeline", async (req, res) => {
+router.get("/post/all/timeline", async (req, res) => {
   try {
     const publicUsers = await User.find({ isPublic: true });
     const publicUserIds = publicUsers.map(user => user._id);
@@ -136,7 +136,7 @@ router.get("/all/timeline", async (req, res) => {
 });
 //get user profile post by userid
 
-router.get("/profile/:userId", async (req, res) => {
+router.get("/post/profile/:userId", async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
     const posts = await Post.find({ userId: user._id });
@@ -147,7 +147,7 @@ router.get("/profile/:userId", async (req, res) => {
 });
 
 // add comment to a post
-router.post("/:id/comment", async (req, res) => {
+router.post("/post/:id/comment", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     const user = await User.findById(req.body.userId);
@@ -170,7 +170,7 @@ router.post("/:id/comment", async (req, res) => {
   }
 });
 // Search posts by tags
-router.get("/search/tags", async (req, res) => {
+router.get("/post/search/tags", async (req, res) => {
   try {
     const tags = req.query.tags.split(","); //http://localhost:8800/api/posts/search/tags?tags=tag1,tag2
     const posts = await Post.find({ tags: { $all: tags } });
@@ -186,7 +186,7 @@ router.get("/search/tags", async (req, res) => {
 });
 
 // Save or unsave a post
-router.put("/:id/save", async (req, res) => {
+router.put("/post/:id/save", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     const user = await User.findById(req.body.userId);

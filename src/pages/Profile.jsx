@@ -14,7 +14,7 @@ const Profile = ({ username }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get("http://localhost:8800/admin_manage_user/660970232846199a041ae117");
+      const res = await axios.get("http://localhost:8800/user/660a8b371b3a589057d28e48");
       setUser(res.data); // Store the JSON data in the state variable
     }
     fetchUser();
