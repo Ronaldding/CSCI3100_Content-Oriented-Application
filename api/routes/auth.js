@@ -1,4 +1,3 @@
-
 const router = require('express').Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
@@ -8,7 +7,7 @@ dotenv.config();
 const cors = require('cors');
 router.use(cors());
 
-//register
+// register
 // register
 router.post('/register', async (req, res) => {
   try {
