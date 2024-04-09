@@ -2,7 +2,6 @@ const User = require("../models/User");
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
 
-
 // Update User
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
