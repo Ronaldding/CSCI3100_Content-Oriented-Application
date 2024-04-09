@@ -7,6 +7,7 @@ import CreatePost from '../components/CreatePost.jsx';
 
 const Explore = ({ explore }) => {
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
+  const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
 
   const handleCreatePostOpen = () => {
     setIsCreatePostOpen(true);
@@ -46,7 +47,7 @@ const Explore = ({ explore }) => {
                 </div>
             </div>
         </div>
-        <Feed />
+        <Feed activeButton={'posts'}/>
       </div>
     </div>
   );

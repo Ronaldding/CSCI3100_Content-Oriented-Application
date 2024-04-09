@@ -6,10 +6,11 @@ import axios from 'axios';
 
 const Notification = () => {
   const [userDetails, setUserDetails] = useState(null);
+  const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get("http://localhost:8800/admin_manage_user/660970232846199a041ae117");
+      const res = await axios.get("http://localhost:8800/contentExplore");
       setUserDetails(res.data); // Store the JSON data in the state variable
     }
     fetchUser();
@@ -20,12 +21,6 @@ const Notification = () => {
       <Topbar />
       {userDetails && (
         <div>
-          <h2>User Details:</h2>
-          <p>ID: {userDetails._id}</p>
-          <p>Username: {userDetails.username}</p>
-          <p>Email: {userDetails.email}</p>
-          <p>Number of Followers: {userDetails.followers.length}</p>
-          <p>Number of Followings: {userDetails.followings.length}</p>
           {userDetails && (
             <div>
               <h2>User Details:</h2>
