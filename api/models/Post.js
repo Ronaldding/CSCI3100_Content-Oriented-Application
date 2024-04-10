@@ -38,6 +38,10 @@ const PostSchema = new mongoose.Schema(
           type: String,
           required: true,
         },
+        username: { // Add this field for the username
+          type: String,
+          required: true,
+        },
         comment: {
           type: String,
           required: true,
