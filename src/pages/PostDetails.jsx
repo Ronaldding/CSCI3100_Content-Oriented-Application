@@ -11,6 +11,7 @@ const PostDetails = () => {
   const { id } = useParams();
   const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
   const [postContent, setPostContent] = useState([]);
+  const [replyText, setReplyText] = useState('');
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -26,6 +27,29 @@ const PostDetails = () => {
     fetchPosts();
   }, []); // Added an empty dependency array
 
+  // Function to handle reply text input change
+  const handleReplyTextChange = (event) => {
+    setReplyText(event.target.value);
+  };
+
+  // Function to handle replying to the post
+  const handleReply = async () => {
+    try {
+      const commentData = {
+        userId: currentUserId,
+        comment: replyText
+      };
+
+      const res = await axios.post(`http://localhost:8800/post/${id}/comment`, commentData);
+      console.log(res.data); // Assuming the server responds with the newly created comment
+
+      // Clear the reply text input
+      setReplyText('');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="postDetails">
       <Topbar />
@@ -36,17 +60,23 @@ const PostDetails = () => {
             <div className="replyLeft">
               <img className='postProfileImg' src="/assets/person/1.jpeg" alt="Profile" />
               <div className="replyText">
-                <label>Tweet a reply</label>
+                <input
+                  type="text"
+                  className="replyInput"
+                  placeholder="Tweet a reply"
+                  value={replyText}
+                  onChange={handleReplyTextChange}
+                />
               </div>
             </div>
             <div className="replyRight">
-              <div className="postBtn">
+              <div className="postBtn" onClick={handleReply}>
                 <label>Reply</label>
               </div>
             </div>
           </div>
         </div>
-        <Comment comment={postContent.comments} />
+        <Comment post={postContent} />
       </div>
     </div>
   );

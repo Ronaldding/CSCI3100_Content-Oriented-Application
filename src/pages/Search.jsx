@@ -25,7 +25,7 @@ const Search = () => {
     if (event.key === 'Enter') {
       setSearchType('none');
       setTimeout(() => {
-        setSearchType(previousSearchType);
+        setSearchType('tag');
       }, 0);
     }
   };

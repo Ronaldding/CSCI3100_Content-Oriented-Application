@@ -57,3 +57,8 @@
     align-items: center;
     color: #999999;
 }
+
+.replyInput {
+    background-color: rgba(0,0,0,0);
+    color: white;
+}
