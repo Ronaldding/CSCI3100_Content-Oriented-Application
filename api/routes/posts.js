@@ -13,38 +13,41 @@ const cors = require('cors')
 router.use(cors())
 
 //create a post
-
 router.post('/post', async (req, res) => {
-  const { userId, desc, img, video, tags } = req.body
+  const { userId, desc, img, video, tags } = req.body;
 
   try {
-    const user = await User.findById(userId)
+    const user = await User.findById(userId);
     if (!user) {
-      return res.status(404).json({ message: 'User not found' })
+      return res.status(404).json({ message: 'User not found' });
     }
 
-    const random = Date.now()
-    const image = await cloudinary.uploader.upload(img, {
-      upload_preset: 'unsigned_upload_posts',
-      public_id: `${userId}_${random}`,
-      allowed_formats: ['jpg', 'jpeg', 'png', 'svg', 'ico', 'webp'],
-    })
+    let image;
+    if (img) {
+      const random = Date.now();
+      image = await cloudinary.uploader.upload(img, {
+        upload_preset: 'unsigned_upload_posts',
+        public_id: `${userId}_${random}`,
+        allowed_formats: ['jpg', 'jpeg', 'png', 'svg', 'ico', 'webp'],
+      });
+    }
 
     const newPost = new Post({
       userId: userId,
       username: user._id,
       desc: desc,
-      img: image.url,
+      img: image ? image.url : undefined,
       video: video,
       tags: tags,
-    })
-    const savedPost = await newPost.save()
+    });
 
-    res.status(200).json(savedPost)
+    const savedPost = await newPost.save();
+
+    res.status(200).json(savedPost);
   } catch (err) {
-    res.status(500).json({ message: err.message })
+    res.status(500).json({ message: err.message });
   }
-})
+});
 
 //update a post
 router.put('/post/:id', async (req, res) => {
