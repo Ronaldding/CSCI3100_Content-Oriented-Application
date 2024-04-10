@@ -108,7 +108,7 @@ class Admin_manage_post extends React.Component {
                                 <th>USERNAME</th>
                                 <th>UPDATED_AT</th>
                                 <th>DESCRIPTION</th>
-                                <th>PHOTO</th>
+                                <th>MEDIA</th>
                                 <th>ACTION</th>
                             </tr>
                             </thead>
