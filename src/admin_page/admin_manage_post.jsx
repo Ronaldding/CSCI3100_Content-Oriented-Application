@@ -119,7 +119,7 @@ class Admin_manage_post extends React.Component {
                             <td style={{width: "auto"}}>{post.updatedAt}</td>
                             <td style={{width: "auto"}}>{post.desc}</td>
                             <td style={{width: "auto"}}>
-                               <h3>{post.video}</h3>
+                                {!post.video ? <img src= {post.img} width= "50%" height="50%"/> : <video width= "50%" height="50%"  controls><source src={post.video} type="video/mp4"/></video>}
                             </td>
                             <td style={{width: "auto"}}>
                                 <div className='popup'>
