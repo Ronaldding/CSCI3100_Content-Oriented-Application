@@ -22,13 +22,22 @@ router.post('/post', async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    let image;
+    let image, uploadedVideo;
+    const random = Date.now();
     if (img) {
-      const random = Date.now();
       image = await cloudinary.uploader.upload(img, {
         upload_preset: 'unsigned_upload_posts',
-        public_id: `${userId}_${random}`,
+        public_id: `post_img_${userId}_${random}`,
         allowed_formats: ['jpg', 'jpeg', 'png', 'svg', 'ico', 'webp'],
+      });
+    }
+
+    if (video) {
+      uploadedVideo = await cloudinary.uploader.upload(video, {
+        resource_type: 'video',
+        //upload_preset: 'video_upload_preset', // Use the preset you configured for videos
+        public_id: `post_video_${userId}_${random}`,
+        chunk_size: 6000000, // Optional: set a chunk size for large file uploading
       });
     }
 
@@ -37,7 +46,7 @@ router.post('/post', async (req, res) => {
       username: user._id,
       desc: desc,
       img: image ? image.url : undefined,
-      video: video,
+      video: uploadedVideo ? uploadedVideo.url : undefined,
       tags: tags,
     });
 
@@ -48,6 +57,7 @@ router.post('/post', async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
 
 //update a post
 router.put('/post/:id', async (req, res) => {
