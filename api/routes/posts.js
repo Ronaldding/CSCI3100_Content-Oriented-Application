@@ -3,19 +3,31 @@ const Post = require("../models/Post");
 const User = require("../models/User");
 const cors = require('cors');
 router.use(cors());
-
 //create a post
-router.post("/post", async (req, res) => {
-  const newPost = new Post(req.body);
+router.post('/post', async (req, res) => {
+  const { userId, desc, img, video, tags } = req.body;
   try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const newPost = new Post({
+      userId: userId,
+      username: user._id, 
+      desc: desc,
+      img: img, 
+      video: video,
+      tags: tags,
+    });
     const savedPost = await newPost.save();
+    
     res.status(200).json(savedPost);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ message: err.message });
   }
 });
-
 //update a post
+
 router.put("/post/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
