@@ -18,7 +18,7 @@ router.post('/post', async (req, res) => {
   const { userId, desc, img, video, tags } = req.body
 
   const random = Date.now()
-  const imageURL = await cloudinary.uploader.upload(imgURL[0], {
+  const image = await cloudinary.uploader.upload(imgURL[0], {
     upload_preset: 'unsigned_upload_posts',
     public_id: `${userId}_${random}`,
     allowed_formats: ['jpg', 'jpeg', 'png', 'svg', 'ico', 'webp'],
@@ -33,7 +33,7 @@ router.post('/post', async (req, res) => {
       userId: userId,
       username: user._id,
       desc: desc,
-      img: imageURL,
+      img: image.url,
       video: video,
       tags: tags,
     })
