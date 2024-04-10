@@ -23,27 +23,38 @@ const CreatePost = ({ trigger, onClose }) => {
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
-    setImage(file);
+    const filePath = event.target.value; // Get the file path from the input element
+    console.log(filePath);
+    setImage("/Users/ronaldding/Desktop/image.png");
   };
 
   const handleVideoUpload = (event) => {
     const file = event.target.files[0];
-    setVideo(file);
+    setVideo(file)
   };
 
   const handleSubmit = async (event) => {
+    console.log("creating posts");
     event.preventDefault();
-    
+  
     try {
-      const response = await axios.post('http://localhost:8800/post', {
-        userId: currentUserId,
-        desc: content,
-        tags: tags
+      const response = await fetch('http://localhost:8800/post', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userId: currentUserId,
+          desc: content,
+          tags: tags,
+          img: image
+        })
       });
-      
+  
       // Handle the response as needed
-      console.log(response.data);
-      
+      const data = await response.json();
+      console.log(data);
+  
       // Reset the form or close the popup after submission
       onClose();
       window.location.reload();
