@@ -228,22 +228,12 @@ const Profile = ({ username }) => {
             Posts
           </button>
         </div>
+        {activeButton === 'posts' && (
+            <div className="profilePosts">
+              <Feed activeButton={activeButton}></Feed>
+            </div>
+          )}
       </div>
-      {activeButton === 'posts' && (
-        <div className="profilePosts">
-          <Feed activeButton={activeButton}></Feed>
-        </div>
-      )}
-      {activeButton === 'followers' && (
-        <div className="profileFollowers">
-          {/* Render followers */}
-        </div>
-      )}
-      {activeButton === 'following' && (
-        <div className="profileFollowing">
-          {/* Render following */}
-        </div>
-      )}
       {isEditProfileOpen && (
         <EditProfile
           onClose={handleCloseEditProfile}
