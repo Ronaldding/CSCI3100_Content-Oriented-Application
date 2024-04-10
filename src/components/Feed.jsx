@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import './feed.css';
 import Post from './Post.jsx';
 import { Posts, PostsReplies } from '../dummyData.js';
 import { PostsReposts } from '../dummyData.js';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const Feed = ({ activeButton, tags }) => {
   const [feedContent, setFeedContent] = useState([]);
   const { id } = useParams();
-  const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
+  const currentUserId = sessionStorage.getItem('userID');
+  // const currentUserId = '660970232846199a041ae117'; 
 
   useEffect(() => {
     if (activeButton === 'explore') {
@@ -50,7 +52,7 @@ const Feed = ({ activeButton, tags }) => {
     } else if (activeButton === 'posts') {
       const fetchPosts = async () => {
         try {
-          const res = await axios.get('http://localhost:8800/contentExplore');
+          const res = await axios.get(`http://localhost:8800/post/timeline/${id}`);
           setFeedContent(res.data);
           console.log(res);
         } catch (error) {
