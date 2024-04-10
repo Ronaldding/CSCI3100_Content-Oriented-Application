@@ -1,0 +1,301 @@
+[{
+  "_id": {
+    "$oid": "660a8a6c1445c4a8d5135a2c"
+  },
+  "userId": "660970232846199a041ae117",
+  "username": {
+    "$oid": "660970232846199a041ae117"
+  },
+  "desc": "hello",
+  "likes": [
+    "6609753185abbcb4c20c6bde"
+  ],
+  "isHide": false,
+  "tags": [],
+  "comments": [],
+  "retweets": [],
+  "createdAt": {
+    "$date": "2024-04-01T10:20:28.613Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-01T10:20:28.613Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660a8cdfe51dab7c9834cd1d"
+  },
+  "userId": "660970232846199a041ae117",
+  "username": {
+    "$oid": "660970232846199a041ae117"
+  },
+  "desc": "highest",
+  "likes": [
+    "6609753185abbcb4c20c6bde",
+    "660a8b371b3a589057d28e48",
+    "660a8b371b3a589057d28e49"
+  ],
+  "isHide": false,
+  "tags": [],
+  "comments": [],
+  "retweets": [],
+  "createdAt": {
+    "$date": "2024-04-01T10:30:55.183Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-01T10:30:55.183Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660a8cdfe51dab7c9834cd1e"
+  },
+  "userId": "660970232846199a041ae117",
+  "username": {
+    "$oid": "660970232846199a041ae117"
+  },
+  "desc": "2highest",
+  "likes": [
+    "6609753185abbcb4c20c6bde",
+    "660a8b371b3a589057d28e48"
+  ],
+  "isHide": false,
+  "tags": [],
+  "comments": [],
+  "retweets": [],
+  "createdAt": {
+    "$date": "2024-04-01T10:30:55.184Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-01T10:30:55.184Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660a8cdfe51dab7c9834cd21"
+  },
+  "userId": "660a8b371b3a589057d28e4a",
+  "username": {
+    "$oid": "660a8b371b3a589057d28e4a"
+  },
+  "desc": "privacy",
+  "likes": [
+    "660970232846199a041ae117",
+    "660a8b371b3a589057d28e48",
+    "660a8b371b3a589057d28e49",
+    "660a8b371b3a589057d28e4a"
+  ],
+  "isHide": false,
+  "tags": [],
+  "comments": [],
+  "retweets": [],
+  "createdAt": {
+    "$date": "2024-04-01T10:30:55.184Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-01T10:30:55.184Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660a8cdfe51dab7c9834cd1f"
+  },
+  "userId": "6609753185abbcb4c20c6bde",
+  "username": {
+    "$oid": "6609753185abbcb4c20c6bde"
+  },
+  "desc": "Mosthighest",
+  "likes": [
+    "660970232846199a041ae117",
+    "660a8b371b3a589057d28e48",
+    "660a8b371b3a589057d28e49",
+    "660a8b371b3a589057d28e4a"
+  ],
+  "isHide": false,
+  "tags": [],
+  "comments": [],
+  "retweets": [],
+  "createdAt": {
+    "$date": "2024-04-01T10:30:55.184Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-01T10:30:55.184Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660a8cdfe51dab7c9834cd20"
+  },
+  "userId": "6609753185abbcb4c20c6bde",
+  "username": {
+    "$oid": "6609753185abbcb4c20c6bde"
+  },
+  "desc": "least",
+  "likes": [],
+  "isHide": false,
+  "tags": [],
+  "comments": [],
+  "retweets": [],
+  "createdAt": {
+    "$date": "2024-04-01T10:30:55.184Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-01T10:30:55.184Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6616b8b0f12e7ba17669f044"
+  },
+  "userId": "660a8b371b3a589057d28e48",
+  "username": {
+    "$oid": "660a8b371b3a589057d28e48"
+  },
+  "desc": "testing",
+  "img": "http://res.cloudinary.com/dni2cviqe/image/upload/v1712765102/posts/660a8b371b3a589057d28e48_1712765102665.jpg",
+  "likes": [],
+  "isHide": false,
+  "tags": [
+    "abc"
+  ],
+  "comments": [],
+  "retweets": [],
+  "createdAt": {
+    "$date": "2024-04-10T16:05:04.120Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-10T16:07:59.206Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6616b955f12e7ba17669f052"
+  },
+  "userId": "660a8b371b3a589057d28e4a",
+  "username": {
+    "$oid": "660a8b371b3a589057d28e4a"
+  },
+  "desc": "testing2",
+  "img": "http://res.cloudinary.com/dni2cviqe/image/upload/v1712765268/posts/660a8b371b3a589057d28e4a_1712765268439.jpg",
+  "likes": [],
+  "isHide": false,
+  "tags": [
+    "abc"
+  ],
+  "comments": [],
+  "retweets": [],
+  "createdAt": {
+    "$date": "2024-04-10T16:07:49.902Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-10T16:07:49.902Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6616bf128ca48ec52ccd74bd"
+  },
+  "userId": "6609753185abbcb4c20c6bde",
+  "username": {
+    "$oid": "6609753185abbcb4c20c6bde"
+  },
+  "desc": "testing4",
+  "video": "http://res.cloudinary.com/dni2cviqe/video/upload/v1712766736/post_video_6609753185abbcb4c20c6bde_1712766734404.mp4",
+  "likes": [],
+  "isHide": false,
+  "tags": [
+    "abc"
+  ],
+  "comments": [],
+  "retweets": [],
+  "createdAt": {
+    "$date": "2024-04-10T16:32:18.101Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-10T16:32:18.101Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6616c31f8ca48ec52ccd74e3"
+  },
+  "userId": "660bbc82b22a21306d2e9d6e",
+  "username": {
+    "$oid": "660bbc82b22a21306d2e9d6e"
+  },
+  "desc": "testing5",
+  "video": "http://res.cloudinary.com/dni2cviqe/video/upload/v1712767773/post_video_660bbc82b22a21306d2e9d6e_1712767772142.mp4",
+  "likes": [],
+  "isHide": false,
+  "tags": [
+    "abc"
+  ],
+  "comments": [],
+  "retweets": [],
+  "createdAt": {
+    "$date": "2024-04-10T16:49:35.658Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-10T16:49:35.658Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6616c4608ca48ec52ccd74ea"
+  },
+  "userId": "660bbc82b22a21306d2e9d6e",
+  "username": {
+    "$oid": "660bbc82b22a21306d2e9d6e"
+  },
+  "desc": "testing6",
+  "img": "http://res.cloudinary.com/dni2cviqe/image/upload/v1712768095/posts/post_img_660bbc82b22a21306d2e9d6e_1712768095443.jpg",
+  "likes": [],
+  "isHide": false,
+  "tags": [
+    "abc"
+  ],
+  "comments": [],
+  "retweets": [],
+  "createdAt": {
+    "$date": "2024-04-10T16:54:56.731Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-10T16:54:56.731Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6616c4a78ca48ec52ccd74f0"
+  },
+  "userId": "660bbc82b22a21306d2e9d6e",
+  "username": {
+    "$oid": "660bbc82b22a21306d2e9d6e"
+  },
+  "desc": "testing6",
+  "img": "http://res.cloudinary.com/dni2cviqe/image/upload/v1712768166/posts/post_img_660bbc82b22a21306d2e9d6e_1712768165831.jpg",
+  "likes": [],
+  "isHide": false,
+  "tags": [
+    "abc"
+  ],
+  "comments": [],
+  "retweets": [],
+  "createdAt": {
+    "$date": "2024-04-10T16:56:07.323Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-10T16:56:07.323Z"
+  },
+  "__v": 0
+}]
