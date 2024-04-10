@@ -5,7 +5,7 @@ import { Posts, PostsReplies } from '../dummyData.js';
 import { PostsReposts } from '../dummyData.js';
 import axios from 'axios';
 
-const Feed = ({ activeButton }) => {
+const Feed = ({ activeButton, tags }) => {
   const [feedContent, setFeedContent] = useState([]);
 
   useEffect(() => {
@@ -61,6 +61,19 @@ const Feed = ({ activeButton }) => {
       const fetchPosts = async () => {
         try {
           const res = await axios.get(`http://localhost:8800/post/timeline/saved/${currentUserId}`);
+          setFeedContent(res.data);
+          console.log(res);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+  
+      fetchPosts();
+    } else if (activeButton === 'search') {
+      console.log(tags);
+      const fetchPosts = async () => {
+        try {
+          const res = await axios.get(`http://localhost:8800/post/search/tags?tags=${tags}`);
           setFeedContent(res.data);
           console.log(res);
         } catch (error) {

@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import './search.css';
 import Topbar from '../components/Topbar.jsx';
 import { SearchOutline } from 'react-ionicons';
+import Feed from '../components/Feed';
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchType, setSearchType] = useState('tag'); // Default search type is 'tag'
+  const [previousSearchType, setPreviousSearchType] = useState('tag');
 
   // Function to handle search term input change
   const handleSearchTermChange = (event) => {
@@ -14,7 +16,18 @@ const Search = () => {
 
   // Function to handle search type change
   const handleSearchTypeChange = (type) => {
+    setPreviousSearchType(searchType);
     setSearchType(type);
+  };
+
+  // Function to handle "Enter" key press in the text area
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      setSearchType('none');
+      setTimeout(() => {
+        setSearchType(previousSearchType);
+      }, 0);
+    }
   };
 
   // Function to handle search
@@ -31,6 +44,8 @@ const Search = () => {
     { id: 3, name: 'Alice Johnson' },
   ];
 
+  // http://localhost:8800/post/search/tags?tags=123
+
   return (
     <div className="search">
       <Topbar />
@@ -43,6 +58,7 @@ const Search = () => {
             placeholder="Search"
             value={searchTerm}
             onChange={handleSearchTermChange}
+            onKeyPress={handleKeyPress} // Add key press event handler
           />
           <div className="searchButtons">
             <button
@@ -59,15 +75,22 @@ const Search = () => {
             </button>
           </div>
         </div>
-        <div className="searchResults">
-          {searchResults.map((result) => (
-            <div className="searchResultItem" key={result.id}>
-              <img src={`assets/person/${result.id}.jpeg`} alt="Person" />
-              <span>{result.name}</span>
-              <button className="followButton">Follow</button>
-            </div>
-          ))}
-        </div>
+        {searchType === 'name' && (
+          <div className="searchResults">
+            {searchResults.map((result) => (
+              <div className="searchResultItem" key={result.id}>
+                <img src={`assets/person/${result.id}.jpeg`} alt="Person" />
+                <span>{result.name}</span>
+                <button className="followButton">Follow</button>
+              </div>
+            ))}
+          </div>
+        )}
+        {searchType === 'tag' && (
+          <div className="searchResults">
+            <Feed activeButton={'search'} tags={searchTerm}></Feed>
+          </div>
+        )}
       </div>
     </div>
   );
