@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const CreatePost = ({ trigger, onClose }) => {
   const [content, setContent] = useState('');
+  const [tags, setTags] = useState([]);
   const [image, setImage] = useState(null);
   const [video, setVideo] = useState(null);
   const currentUserId = sessionStorage.getItem('userID');
@@ -12,6 +13,12 @@ const CreatePost = ({ trigger, onClose }) => {
 
   const handleContentChange = (event) => {
     setContent(event.target.value);
+  };
+
+  const handleTagsChange = (event) => {
+    const value = event.target.value;
+    const tagsArray = value.split(',').map(tag => tag.trim());
+    setTags(tagsArray);
   };
 
   const handleImageUpload = (event) => {
@@ -30,7 +37,8 @@ const CreatePost = ({ trigger, onClose }) => {
     try {
       const response = await axios.post('http://localhost:8800/post', {
         userId: currentUserId,
-        desc: content
+        desc: content,
+        tags: tags
       });
       
       // Handle the response as needed
@@ -57,6 +65,12 @@ const CreatePost = ({ trigger, onClose }) => {
               value={content}
               onChange={handleContentChange}
               placeholder="Enter your content..."
+            />
+            <textarea
+              className="tag"
+              value={tags}
+              onChange={handleTagsChange}
+              placeholder="Enter your tags..."
             />
             <label className="uploadLabel">
               <ImagesOutline color="#ffffff" height="20px" width="20px" />

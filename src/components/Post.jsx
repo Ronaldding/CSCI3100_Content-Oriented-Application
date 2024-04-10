@@ -17,6 +17,7 @@ const Post = ({ post }) => {
   const [userSaved, setUserSaved] = useState(false);
   const [editPost, setEditPost] = useState(false);
   const [content, setContent] = useState(post.desc);
+  const [tags, setTags] = useState([]);
   const [postOwner, setPostOwner] = useState({
     "_id": "660970232846199a041ae117",
     "username": "Unknown User",
@@ -142,6 +143,12 @@ const Post = ({ post }) => {
     setEditPost(true);
   };
 
+  const handleTagsChange = (event) => {
+    const value = event.target.value;
+    const tagsArray = value.split(',').map(tag => tag.trim());
+    setTags(tagsArray);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     post.desc = content;
@@ -149,7 +156,8 @@ const Post = ({ post }) => {
     try {
       const response = await axios.put(`http://localhost:8800/post/${post._id}`, {
         userId: currentUserId,
-        desc: content
+        desc: content,
+        tags: tags
       });
       
       // Handle the response as needed
@@ -299,7 +307,16 @@ const Post = ({ post }) => {
                   onChange={handleContentChange}
                 >
                 </textarea>
-                <button className="postbtn" type="submit">Update</button>
+                <textarea
+                  className="tag"
+                  value={tags}
+                  onChange={handleTagsChange}
+                  placeholder="Enter your tags..."
+                />
+                <div className="btns">
+                  <button className="postbtn" type="submit">Update</button>
+                  <button className="postbtn" style={{ backgroundColor: '#ff0000', color: '#ffffff'}} onClick={handleDelete}>Delete</button>
+                </div>
               </form>
             </div>
           </div>

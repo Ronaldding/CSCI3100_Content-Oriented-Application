@@ -37,7 +37,11 @@ const Comment = ({ post }) => {
             <div className="commentTop">
               <div className="commentTopLeft">
                 <img className="commentProfileImg" src="/assets/person/1.jpeg" alt="Profile" />
-                <div className="commentUserName">{comment.userId}</div>
+                {
+                  comment.username != null ?
+                  <div className="commentUserName">{comment.username}</div> :
+                  <div className="commentUserName">{comment.userId}</div>
+                }
                 <span className="commentDate">{comment.date}</span>
               </div>
               {/* <div className="commentTopRight">
