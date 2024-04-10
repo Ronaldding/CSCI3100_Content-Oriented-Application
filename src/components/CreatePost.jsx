@@ -21,16 +21,47 @@ const CreatePost = ({ trigger, onClose }) => {
     setTags(tagsArray);
   };
 
-  const handleImageUpload = (event) => {
+  const handleImageUpload = async (event) => {
     const file = event.target.files[0];
-    const filePath = event.target.value; // Get the file path from the input element
-    console.log(filePath);
-    setImage("/Users/ronaldding/Desktop/image.png");
+  
+    if (!file) {
+      console.error("Please select a file to upload");
+      return;
+    }
+    const fileName = Date.now() + file.name;
+   
+    const formData = new FormData();
+    formData.append("name", fileName);
+    formData.append("file", file); 
+    
+    try {
+      // Use the full URL as you used in Postman
+      const response = await axios.post("http://localhost:8800/upload/images", formData, {
+        headers: {
+        }
+      });
+  
+      console.log('File uploaded successfully', response.data);
+        
+        const imageUrl = `https://5713-42-3-28-129.ngrok-free.app/images/${fileName}`;//need change
+        //const imageUrl = `http://localhost:8800/images/${fileName}`;
+        console.log('Image URL:', imageUrl);
+        console.log('Image URL:', file);
+        setImage(imageUrl); 
+      
+
+    } catch (error) {
+      console.error("Error occurred during file upload", error);
+    }
   };
 
   const handleVideoUpload = (event) => {
     const file = event.target.files[0];
     setVideo(file)
+
+
+
+    
   };
 
   const handleSubmit = async (event) => {

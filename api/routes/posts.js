@@ -88,10 +88,10 @@ router.delete('/post/:id', async (req, res) => {
 
     if (post.userId === req.body.userId || user.isAdmin) {
       // Check if the user is the owner of the post or an admin
-      const publicId = extractPublicId(post.img)
+      /*const publicId = extractPublicId(post.img)
       if (publicId) {
         await cloudinary.uploader.destroy(publicId)
-      }
+      }*/
 
       await post.deleteOne()
       res.status(200).json('Post has been deleted')
