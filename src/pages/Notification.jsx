@@ -10,7 +10,8 @@ const Notification = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get("http://localhost:8800/contentExplore");
+      // const res = await axios.get(`http://localhost:8800/post/all/timeline`);
+      const res = await axios.get(`http://localhost:8800/notification/${currentUserId}`);
       setUserDetails(res.data); // Store the JSON data in the state variable
     }
     fetchUser();
@@ -23,7 +24,7 @@ const Notification = () => {
         <div>
           {userDetails && (
             <div>
-              <h2>User Details:</h2>
+              <h2>Your notification will be shown here:</h2>
               <ul>
                 {Object.entries(userDetails).map(([key, value]) => (
                   <li key={key}>

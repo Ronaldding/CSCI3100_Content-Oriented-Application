@@ -57,6 +57,18 @@ const Feed = ({ activeButton }) => {
       };
   
       fetchPosts();
+    } else if (activeButton === 'saved') {
+      const fetchPosts = async () => {
+        try {
+          const res = await axios.get(`http://localhost:8800/post/profile/${id}`);
+          setFeedContent(res.data);
+          console.log(res);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+  
+      fetchPosts();
     } else {
       setFeedContent(Posts);
     }

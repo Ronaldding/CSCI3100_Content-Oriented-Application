@@ -19,6 +19,7 @@ const Explore = ({ explore }) => {
 
   return (
     <div className="explore">
+      <Topbar />
       <div className="contentSwitch">
         <div className="switchItem">
           <SwapHorizontal color={'#ffffff'} height="30px" width="30px"/>
@@ -27,7 +28,6 @@ const Explore = ({ explore }) => {
           <label>For you</label>
         </div>
       </div>
-      <Topbar />
       {isCreatePostOpen && (
         <CreatePost trigger={true} onClose={handleCreatePostClose} />
       )}
