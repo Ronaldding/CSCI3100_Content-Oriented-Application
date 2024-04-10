@@ -326,27 +326,23 @@ router.put('/user/:id/unsuspend', async (req, res) => {
     res.status(500).json(err)
   }
 })
-//search user by username(partial matches) or email(100% match)
+//search user by username(partial matches) or email (100% match)
 router.get('/search/user/', async (req, res) => {//http://localhost:8800/search/user?q=email/username
   try {
     const searchQuery = req.query.q;
     if (!searchQuery) {
       return res.status(400).json({ message: "No search query provided." });
     }
-
     const usernameRegex = new RegExp(`^${searchQuery}`, 'i');
-
     const users = await User.find({
       $or: [
         { username: { $regex: usernameRegex } }, 
         { email: searchQuery } 
       ]
     });
-
     if (users.length === 0) {
       return res.status(404).json({ message: "No users found matching the search query." });
     }
-
     res.status(200).json(users);
   } catch (err) {
     console.error(err); 
