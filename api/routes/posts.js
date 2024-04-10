@@ -260,4 +260,20 @@ router.put('/post/:id/save', async (req, res) => {
   }
 })
 
+// Get saved posts timeline for a user by userId
+router.get('/post/timeline/saved/:userId', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.params.userId);
+    if (!currentUser || !currentUser.savedPosts) {
+      return res.status(200).json([]);
+    }  
+    const savedPosts = await Post.find({
+      '_id': { $in: currentUser.savedPosts }
+    }).populate('username', 'username'); 
+    res.status(200).json(savedPosts);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 module.exports = router
