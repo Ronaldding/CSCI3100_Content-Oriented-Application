@@ -77,6 +77,8 @@ const Post = ({ post }) => {
         } else {
           setUserSaved(false);
         }
+        console.log(post._id);
+        console.log(userSaved);
       } catch (error) {
         console.error(error);
       }

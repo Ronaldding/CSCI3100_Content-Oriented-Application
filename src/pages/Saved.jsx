@@ -5,12 +5,14 @@ import Topbar from '../components/Topbar.jsx'
 import Share from '../components/Share.jsx'
 
 const Saved = ({ saved }) => {
+  
 
   return (
     <div className="saved">
         <Topbar />
         <div className="savedContainer">
-            <label>Posts that you save will appear here.</label>
+          <label>Posts that you save will appear here.</label>
+          <Feed activeButton={"saved"}></Feed>
         </div>
     </div>
   );

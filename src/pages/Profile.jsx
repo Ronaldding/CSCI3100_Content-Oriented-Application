@@ -14,7 +14,25 @@ const Profile = ({ username }) => {
   const [activeButton, setActiveButton] = useState('posts');
   const { id } = useParams();
   const [isFollowing, setIsFollowing] = useState(false);
+  const [isBlocked, setIsBlocked] = useState(false);
   const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8800/user/${id}`);
+        setUser(res.data);
+         // Check if the followers array includes the currentUserId
+         setIsFollowing(res.data.followers.includes(currentUserId));
+         setIsBlocked(res.data.blockedUsers.includes(currentUserId));
+        console.log(res);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchUser();
+  }, [id]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -46,7 +64,12 @@ const Profile = ({ username }) => {
   
   const handleFollowClick = async () => {
     try {
-      const url = `http://localhost:8800/user/${id}/follow`;
+      let url = '';
+      if (isFollowing) {
+        url = `http://localhost:8800/user/${id}/unfollow`;
+      } else {
+        url = `http://localhost:8800/user/${id}/follow`;
+      }
 
       const response = await fetch(url, {
         method: 'PUT',
@@ -62,7 +85,7 @@ const Profile = ({ username }) => {
 
       if (response.ok) {
         console.log(data); // Log the response if needed
-        setIsFollowing(true);
+        setIsFollowing(!isFollowing);
       } else {
         console.error(data); // Log the error response if needed
       }
@@ -72,8 +95,37 @@ const Profile = ({ username }) => {
     }
   };
 
-  const handleMessageClick = () => {
-    // Handle follow click logic
+  const handleBlockClick = async () => {
+    try {
+      let url = '';
+      if (isBlocked) {
+        url = `http://localhost:8800/user/${id}/unblock`;
+      } else {
+        url = `http://localhost:8800/user/${id}/block`;
+      }
+  
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userId: currentUserId
+        })
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        console.log(data); // Log the response if needed
+        setIsBlocked(!isBlocked);
+      } else {
+        console.error(data); // Log the error response if needed
+      }
+    } catch (error) {
+      console.error('An error occurred while making the block/unblock request:', error);
+      // Handle error if needed
+    }
   };
 
   if (!user) {
@@ -159,8 +211,8 @@ const Profile = ({ username }) => {
             <button className="editProfileButton" onClick={handleFollowClick}>
               {isFollowing ? 'Following' : 'Follow'}
             </button>
-            <button className="editProfileButton" onClick={handleMessageClick}>
-              Message
+            <button className="editProfileButton" onClick={handleBlockClick}>
+              {isBlocked ? 'Unblock' : 'Block'}
             </button>
           </div>
           ):(
