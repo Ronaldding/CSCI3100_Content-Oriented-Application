@@ -70,7 +70,7 @@ router.put('/user/picture/:id', async (req, res) => {
 
     // Update the user's profile picture with the new Cloudinary URL
     const imageURL = await cloudinary.uploader.upload(imgURL[0], {
-      upload_preset: 'unsigned_upload_posts',
+      upload_preset: 'unsigned_upload_users',
       public_id: `${userId}_profilePicture`,
       allowed_formats: ['jpg', 'jpeg', 'png', 'svg', 'ico', 'webp'],
     })
