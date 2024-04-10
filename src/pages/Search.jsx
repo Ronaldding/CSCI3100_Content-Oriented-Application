@@ -3,23 +3,26 @@ import './search.css';
 import Topbar from '../components/Topbar.jsx';
 import { SearchOutline } from 'react-ionicons';
 import Feed from '../components/Feed';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchType, setSearchType] = useState('tag');
   const [searchResults, setSearchResults] = useState([]);
+  const currentUserId = sessionStorage.getItem('userID');
+
+  const fetchSearchResults = async () => {
+    try {
+      const response = await fetch(`http://localhost:8800/search/user?q=${searchTerm}`);
+      const data = await response.json();
+      setSearchResults(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const fetchSearchResults = async () => {
-      try {
-        const response = await fetch(`http://localhost:8800/search/user?q=${searchTerm}`);
-        const data = await response.json();
-        setSearchResults(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     if (searchTerm) {
       fetchSearchResults();
     }
@@ -42,8 +45,27 @@ const Search = () => {
     }
   };
 
-  const handleSearch = () => {
-    console.log(`Searching ${searchType}: ${searchTerm}`);
+  const handleFollowClick = async (userId) => {
+    try {
+      const response = await axios.get(`http://localhost:8800/user/${userId}`);
+      const user = response.data;
+      const isFollowing = user.followers.includes(currentUserId);
+
+      if (isFollowing) {
+        await axios.put(`http://localhost:8800/user/${userId}/unfollow`, {
+          userId: currentUserId
+        });
+      } else {
+        await axios.put(`http://localhost:8800/user/${userId}/follow`, {
+          userId: currentUserId
+        });
+      }
+
+      await fetchSearchResults();
+    } catch (error) {
+      console.error('An error occurred while making the follow request:', error);
+      // Handle error if needed
+    }
   };
 
   return (
@@ -78,11 +100,18 @@ const Search = () => {
         {searchType === 'name' && (
           <div className="searchResults">
             {searchResults.map((result) => (
+              <Link to={`/profile/${result._id}` }>
               <div className="searchResultItem" key={result._id}>
                 <img src={`assets/person/${result._id}.jpeg`} alt="Person" />
                 <span>{result.username}</span>
-                <button className="followButton">Follow</button>
+                {/* <button className="followButton" onClick={() => handleFollowClick(result._id)}>
+                  {result.isFollowing ? 'Following' : 'Follow'}
+                </button> */}
+                  <button className="followButton">
+                    Info
+                  </button>
               </div>
+              </Link>
             ))}
           </div>
         )}
