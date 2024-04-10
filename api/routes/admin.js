@@ -35,7 +35,7 @@ router.get('/admin_manage_user/:id', async (req, res) => {
       res.status(500).json(err);
     }
 });
-
+/*
 // Delete a user
 router.delete('/admin_manage_user/:id', async (req, res) => {
     try {
@@ -44,6 +44,36 @@ router.delete('/admin_manage_user/:id', async (req, res) => {
             return res.status(404).json('User not found');
         }
         // await User.findByIdAndDelete(req.params.id);
+        await user.deleteOne();
+        res.status(200).json('Account has been deleted');
+    } catch (err) {
+        return res.status(500).json(err);
+    }
+});
+
+*/
+
+// Delete a user
+router.delete('/admin_manage_user/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        const userPost = await Post.find({ userId: req.params.id });
+        if (!user) {
+            return res.status(404).json('User not found');
+        } 
+        if (userPost.length == 1){
+            await userPost[0].deleteOne();
+        } else if (userPost) {
+            await Post.deleteMany({ userId: req.params.id});
+        }
+        await User.updateMany({}, { 
+            $pull: {
+                followings: req.params.id, 
+                followers: req.params.id, 
+                blockedUsers: req.params.id, 
+                followRequests: req.params.id
+            }
+        });
         await user.deleteOne();
         res.status(200).json('Account has been deleted');
     } catch (err) {
