@@ -11,29 +11,9 @@ const cors = require('cors')
 router.use(cors())
 
 //create a post
+
 router.post('/post', async (req, res) => {
-  const userId = req.body.userId
-  const imgURL = req.body.img
-
-  const random = Date.now()
-  const imageURL = await cloudinary.uploader.upload(imgURL[0], {
-    upload_preset: 'unsigned_upload_posts',
-    public_id: `${userId}_${random}`,
-    allowed_formats: ['jpg', 'jpeg', 'png', 'svg', 'ico', 'webp'],
-  })
-
-  const newPost = new Post({
-    userId: userId,
-    username: req.body.username,
-    desc: req.body.desc,
-    img: imageURL,
-    video: req.body.video,
-    likes: [],
-    isHide: false,
-    tags: req.body.tags,
-    comments: [],
-    retweets: [],
-  })
+  const newPost = new Post(req.body)
   try {
     const savedPost = await newPost.save()
     res.status(200).json(savedPost)

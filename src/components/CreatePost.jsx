@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './createpost.css';
-import { ImagesOutline, CloseOutline } from 'react-ionicons'
+import { ImagesOutline, CloseOutline } from 'react-ionicons';
+import axios from 'axios';
 
 const CreatePost = ({ trigger, onClose }) => {
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
   const [video, setVideo] = useState(null);
+  const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
 
   const handleContentChange = (event) => {
     setContent(event.target.value);
@@ -21,13 +23,25 @@ const CreatePost = ({ trigger, onClose }) => {
     setVideo(file);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle the submission logic here
-    // You can access the content, image, and video state variables
-    // and perform the necessary actions (e.g., send data to the server)
-    // Reset the form or close the popup after submission
-    onClose();
+    
+    try {
+      const response = await axios.post('http://localhost:8800/post', {
+        userId: currentUserId,
+        desc: content
+      });
+      
+      // Handle the response as needed
+      console.log(response.data);
+      
+      // Reset the form or close the popup after submission
+      onClose();
+      window.location.reload();
+    } catch (error) {
+      // Handle error cases
+      console.error(error);
+    }
   };
 
   return (
