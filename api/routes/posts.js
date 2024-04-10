@@ -265,7 +265,7 @@ router.get('/post/timeline/saved/:userId', async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.userId);
     if (!currentUser || !currentUser.savedPosts) {
-      return res.status(200).json([]);
+      return res.status(200).json("Error: User not found or no saved posts.");
     }  
     const savedPosts = await Post.find({
       '_id': { $in: currentUser.savedPosts }
