@@ -189,29 +189,6 @@ router.get('/post/profile/:userId', async (req, res) => {
 })
 
 // add comment to a post
-/*router.post('/post/:id/comment', async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id)
-    const user = await User.findById(req.body.userId)
-
-    if (!post) {
-      return res.status(404).json('Post not found')
-    }
-
-    const newComment = {
-      userId: user._id,
-      comment: req.body.comment,
-    }
-
-    post.comments.push(newComment)
-    await post.save()
-
-    res.status(200).json('Comment added successfully')
-  } catch (err) {
-    res.status(500).json(err)
-  }
-})*/
-
 router.post('/post/:id/comment', async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
