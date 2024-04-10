@@ -46,7 +46,7 @@ const PostDetails = () => {
             </div>
           </div>
         </div>
-        <Comment />
+        <Comment comment={postContent.comments} />
       </div>
     </div>
   );
