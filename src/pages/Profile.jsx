@@ -227,23 +227,11 @@ const Profile = ({ username }) => {
           >
             Posts
           </button>
-          <button
-            className={`profileButton ${activeButton === 'followers' ? 'active' : ''}`}
-            onClick={() => handleButtonClick('followers')}
-          >
-            Followers
-          </button>
-          <button
-            className={`profileButton ${activeButton === 'following' ? 'active' : ''}`}
-            onClick={() => handleButtonClick('following')}
-          >
-            Following
-          </button>
         </div>
       </div>
       {activeButton === 'posts' && (
         <div className="profilePosts">
-          {/* Render posts */}
+          <Feed activeButton={activeButton}></Feed>
         </div>
       )}
       {activeButton === 'followers' && (

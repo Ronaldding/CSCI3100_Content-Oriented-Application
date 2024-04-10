@@ -315,7 +315,7 @@ const Post = ({ post }) => {
                 />
                 <div className="btns">
                   <button className="postbtn" type="submit">Update</button>
-                  <button className="postbtn" style={{ backgroundColor: '#ff0000', color: '#ffffff'}} onClick={handleDelete}>Delete</button>
+                  {/* <button className="postbtn" style={{ backgroundColor: '#ff0000', color: '#ffffff'}} onClick={handleDelete}>Delete</button> */}
                 </div>
               </form>
             </div>
