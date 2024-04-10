@@ -17,18 +17,19 @@ router.use(cors())
 router.post('/post', async (req, res) => {
   const { userId, desc, img, video, tags } = req.body
 
-  const random = Date.now()
-  const image = await cloudinary.uploader.upload(imgURL[0], {
-    upload_preset: 'unsigned_upload_posts',
-    public_id: `${userId}_${random}`,
-    allowed_formats: ['jpg', 'jpeg', 'png', 'svg', 'ico', 'webp'],
-  })
-
   try {
     const user = await User.findById(userId)
     if (!user) {
       return res.status(404).json({ message: 'User not found' })
     }
+
+    const random = Date.now()
+    const image = await cloudinary.uploader.upload(img, {
+      upload_preset: 'unsigned_upload_posts',
+      public_id: `${userId}_${random}`,
+      allowed_formats: ['jpg', 'jpeg', 'png', 'svg', 'ico', 'webp'],
+    })
+
     const newPost = new Post({
       userId: userId,
       username: user._id,
@@ -41,7 +42,6 @@ router.post('/post', async (req, res) => {
 
     res.status(200).json(savedPost)
   } catch (err) {
-    res.status(500).json(err)
     res.status(500).json({ message: err.message })
   }
 })
@@ -191,29 +191,29 @@ router.get('/post/profile/:userId', async (req, res) => {
 // add comment to a post
 router.post('/post/:id/comment', async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id)
     if (!post) {
-      return res.status(404).json('Post not found');
+      return res.status(404).json('Post not found')
     }
-    const user = await User.findById(req.body.userId);
+    const user = await User.findById(req.body.userId)
     if (!user) {
-      return res.status(404).json('User not found');
+      return res.status(404).json('User not found')
     }
     const newComment = {
       userId: user._id,
       username: user.username,
       comment: req.body.comment,
-      createdAt: Date.now() 
-    };
-    post.comments.push(newComment);
+      createdAt: Date.now(),
+    }
+    post.comments.push(newComment)
 
-    await post.save();
+    await post.save()
 
-    res.status(200).json('Comment added successfully');
+    res.status(200).json('Comment added successfully')
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err)
   }
-});
+})
 
 // Search posts by tags
 router.get('/post/search/tags', async (req, res) => {
@@ -266,17 +266,17 @@ router.put('/post/:id/save', async (req, res) => {
 // Get saved posts timeline for a user by userId
 router.get('/post/timeline/saved/:userId', async (req, res) => {
   try {
-    const currentUser = await User.findById(req.params.userId);
+    const currentUser = await User.findById(req.params.userId)
     if (!currentUser || !currentUser.savedPosts) {
-      return res.status(200).json("Error: User not found or no saved posts.");
-    }  
+      return res.status(200).json('Error: User not found or no saved posts.')
+    }
     const savedPosts = await Post.find({
-      '_id': { $in: currentUser.savedPosts }
-    }).populate('username', 'username'); 
-    res.status(200).json(savedPosts);
+      _id: { $in: currentUser.savedPosts },
+    }).populate('username', 'username')
+    res.status(200).json(savedPosts)
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: err.message })
   }
-});
+})
 
 module.exports = router

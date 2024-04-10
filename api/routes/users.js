@@ -55,6 +55,7 @@ router.put('/user/picture/:id', async (req, res) => {
   try {
     const userId = req.params.id
     const user = await User.findById(userId)
+    const profilePictureURL = req.body.profilePicture
 
     if (!user) {
       return res.status(404).json({ message: 'User not found.' })
@@ -71,11 +72,12 @@ router.put('/user/picture/:id', async (req, res) => {
     }
 
     // Update the user's profile picture with the new Cloudinary URL
-    const image = await cloudinary.uploader.upload(imgURL[0], {
+    const image = await cloudinary.uploader.upload(profilePictureURL, {
       upload_preset: 'unsigned_upload_users',
       public_id: `${userId}_profilePicture`,
       allowed_formats: ['jpg', 'jpeg', 'png', 'svg', 'ico', 'webp'],
     })
+
     user.profilePicture = image.url
     await user.save()
 
@@ -327,26 +329,29 @@ router.put('/user/:id/unsuspend', async (req, res) => {
   }
 })
 //search user by username(partial matches) or email (100% match)
-router.get('/search/user/', async (req, res) => {//http://localhost:8800/search/user?q=email/username
+router.get('/search/user/', async (req, res) => {
+  //http://localhost:8800/search/user?q=email/username
   try {
-    const searchQuery = req.query.q;
+    const searchQuery = req.query.q
     if (!searchQuery) {
-      return res.status(400).json({ message: "No search query provided." });
+      return res.status(400).json({ message: 'No search query provided.' })
     }
-    const usernameRegex = new RegExp(`^${searchQuery}`, 'i');
+    const usernameRegex = new RegExp(`^${searchQuery}`, 'i')
     const users = await User.find({
-      $or: [
-        { username: { $regex: usernameRegex } }, 
-        { email: searchQuery } 
-      ]
-    });
+      $or: [{ username: { $regex: usernameRegex } }, { email: searchQuery }],
+    })
     if (users.length === 0) {
-      return res.status(404).json({ message: "No users found matching the search query." });
+      return res
+        .status(404)
+        .json({ message: 'No users found matching the search query.' })
     }
-    res.status(200).json(users);
+    res.status(200).json(users)
   } catch (err) {
-    console.error(err); 
-    res.status(500).json({ message: "Error occurred while searching for users.", error: err.message });
+    console.error(err)
+    res.status(500).json({
+      message: 'Error occurred while searching for users.',
+      error: err.message,
+    })
   }
-});
+})
 module.exports = router
