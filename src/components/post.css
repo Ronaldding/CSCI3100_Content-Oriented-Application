@@ -107,3 +107,7 @@
 .moreItem:not(:last-child) {
   border-bottom: 1px solid #555555;
 }
+
+.postContent {
+  max-width: 300px;
+}

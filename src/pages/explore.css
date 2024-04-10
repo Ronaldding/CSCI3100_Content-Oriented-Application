@@ -11,10 +11,11 @@
 }
 
 .contentSwitch {
+
     width: 150px;
     height: 60px;
-    position: absolute;
-    bottom: 50px;
+    position: sticky;
+    top: 80%;
     left: 150px;
     background-color: #222222;
     border-radius: 30px;

@@ -37,10 +37,10 @@ const Feed = ({ activeButton, tags }) => {
       };
   
       fetchPosts();
-    } else if (activeButton === 'reposts') {
+    } else if (activeButton === 'forYou') {
       const fetchPosts = async () => {
         try {
-          const res = await axios.get('http://localhost:8800/contentExplore');
+          const res = await axios.get(`http://localhost:8800/post/timeline/${currentUserId}`);
           setFeedContent(res.data);
           console.log(res);
         } catch (error) {

@@ -263,11 +263,7 @@ const Post = ({ post }) => {
           )}
         </div>
         <div className="postContent">
-          {post.photo != null &&
-            <div className="postImage">
-              <img className="postImage" src={post.photo} alt="Post" />
-            </div>
-          }
+          {!post.video ? <img src= {post.img} width= "100%" height="50%"/> : <video width= "100%" height="50%"  controls><source src={post.video} type="video/mp4"/></video>}
           <div className="postText">{post.desc}</div>
         </div>
         <div className="postBottom">

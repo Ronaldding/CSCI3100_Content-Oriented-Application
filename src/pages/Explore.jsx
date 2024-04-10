@@ -19,16 +19,27 @@ const Explore = ({ explore }) => {
     setIsCreatePostOpen(false);
   };
 
+  const handlePostsType = () => {
+    setIsForYou(!isForYou);
+  };
+
   return (
     <div className="explore">
       <Topbar />
-      <div className="contentSwitch">
+      <div className="contentSwitch" onClick={handlePostsType}>
         <div className="switchItem">
           <SwapHorizontal color={'#ffffff'} height="30px" width="30px"/>
         </div>
-        <div className="switchItem">
-          <label>For you</label>
-        </div>
+        {
+          isForYou ?
+          <div className="switchItem">
+            <label>For you</label>
+          </div>
+          :
+          <div className="switchItem">
+            <label>Explore</label>
+          </div>
+        }
       </div>
       {isCreatePostOpen && (
         <CreatePost trigger={true} onClose={handleCreatePostClose} />
@@ -48,8 +59,12 @@ const Explore = ({ explore }) => {
                     </div>
                 </div>
             </div>
-        </div>
-        <Feed activeButton={'explore'}/>
+        </div>{
+          isForYou ?
+          <Feed activeButton={'explore'}/>
+          :
+          <Feed activeButton={'forYou'}/>
+        }
       </div>
     </div>
   );
