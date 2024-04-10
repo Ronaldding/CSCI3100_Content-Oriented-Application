@@ -21,7 +21,8 @@ const Topbar = () => {
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const location = useLocation();
-  const currentUserId = '660970232846199a041ae117';
+  const currentUserId = sessionStorage.getItem('userID');
+  // const currentUserId = '660970232846199a041ae117';
 
   useEffect(() => {
     const currentUrl = location.pathname;

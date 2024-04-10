@@ -7,7 +7,8 @@ const CreatePost = ({ trigger, onClose }) => {
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
   const [video, setVideo] = useState(null);
-  const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
+  const currentUserId = sessionStorage.getItem('userID');
+  // const currentUserId = '660970232846199a041ae117'; 
 
   const handleContentChange = (event) => {
     setContent(event.target.value);

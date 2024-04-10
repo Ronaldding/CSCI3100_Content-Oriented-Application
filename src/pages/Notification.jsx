@@ -6,7 +6,8 @@ import axios from 'axios';
 
 const Notification = () => {
   const [userDetails, setUserDetails] = useState(null);
-  const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
+  const currentUserId = sessionStorage.getItem('userID');
+  // const currentUserId = '660970232846199a041ae117'; 
 
   useEffect(() => {
     const fetchUser = async () => {

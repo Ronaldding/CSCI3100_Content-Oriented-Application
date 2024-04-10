@@ -7,6 +7,8 @@ import axios from 'axios';
 
 const Feed = ({ activeButton, tags }) => {
   const [feedContent, setFeedContent] = useState([]);
+  const { id } = useParams();
+  const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
 
   useEffect(() => {
     if (activeButton === 'explore') {

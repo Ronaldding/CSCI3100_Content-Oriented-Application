@@ -15,8 +15,8 @@ const Profile = ({ username }) => {
   const { id } = useParams();
   const [isFollowing, setIsFollowing] = useState(false);
   const [isBlocked, setIsBlocked] = useState(false);
-  const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
-
+  const currentUserId = sessionStorage.getItem('userID');
+  // const currentUserId = '660970232846199a041ae117'; 
   useEffect(() => {
     const fetchUser = async () => {
       try {

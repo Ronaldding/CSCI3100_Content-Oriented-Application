@@ -7,7 +7,8 @@ import { ImagesOutline, CloseOutline } from 'react-ionicons';
 import { useLocation, Link } from 'react-router-dom';
 
 const Post = ({ post }) => {
-  const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
+  const currentUserId = sessionStorage.getItem('userID');
+  // const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
   const [currentUserLiked, setCurrentUserLiked] = useState(false);
   const [numLike, setNumLike] = useState(0);
   const [numComments, setNumComments] = useState(0);

@@ -8,6 +8,7 @@ import CreatePost from '../components/CreatePost.jsx';
 const Explore = ({ explore }) => {
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
   const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
+  const [isForYou, setIsForYou] = useState(false);
 
   const handleCreatePostOpen = () => {
     setIsCreatePostOpen(true);

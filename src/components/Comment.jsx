@@ -6,7 +6,8 @@ import axios from 'axios';
 
 const Comment = ({ post }) => {
   const { id } = useParams();
-  const currentUserId = '660970232846199a041ae117'; // Replace with the current user's ID
+  const currentUserId = sessionStorage.getItem('userID');
+  // const currentUserId = '660970232846199a041ae117'; 
   const [postContent, setPostContent] = useState([]);
   const [replyText, setReplyText] = useState('');
 
