@@ -291,5 +291,28 @@ router.get('/post/timeline/saved/:userId', async (req, res) => {
     res.status(500).json({ message: err.message })
   }
 })
+//retweet a post
+router.post('/retweet/:postId', async (req, res) => {
+  const { postId } = req.params;
+  const { userId, desc } = req.body;
 
+  try {
+  
+    const originalPost = await Post.findById(postId);
+    if (!originalPost) {
+      return res.status(404).json({ message: 'Original post not found' });
+    }
+
+    const retweetPost = new Post({
+      userId: userId, 
+      desc: `${desc} Retweet of: ${originalPost.desc}`,
+      tags: originalPost.tags, 
+      retweets: [{ originalPostId: originalPost._id }], 
+    });
+    const savedRetweetPost = await retweetPost.save();
+    res.status(201).json(savedRetweetPost); 
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 module.exports = router
