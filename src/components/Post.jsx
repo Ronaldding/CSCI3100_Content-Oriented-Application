@@ -122,6 +122,7 @@ const Post = ({ post }) => {
 
   const handleDelete = async () => {
     try {
+      // const url = `hhttp://localhost:8800/admin_manage_post/${post._id}`;
       const url = `http://localhost:8800/post/${post._id}`;
       const response = await axios.delete(url, { data: { userId: currentUserId } });
     
