@@ -167,6 +167,7 @@ router.get('/post/timeline/:userId', async (req, res) => {
         return Post.find({ userId: friendId })
       })
     )
+    
     res.status(200).json(userPosts.concat(...friendPosts))
   } catch (err) {
     res.status(500).json(err)
@@ -183,6 +184,7 @@ router.get('/post/all/timeline', async (req, res) => {
       userId: { $in: publicUserIds },
       isHide: false,
     })
+    
     res.status(200).json(timelinePosts)
   } catch (err) {
     res.status(500).json(err)
@@ -305,6 +307,8 @@ router.post('/retweet/:postId', async (req, res) => {
       userId: userId,
       desc: `${desc} Retweet of: ${originalPost.desc}`,
       tags: originalPost.tags,
+      img: originalPost.img,
+      video: originalPost.video,
       retweets: [{ originalPostId: originalPost._id }],
     })
     const savedRetweetPost = await retweetPost.save()
