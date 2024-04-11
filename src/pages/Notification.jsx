@@ -21,6 +21,7 @@ const Notification = () => {
   return (
     <div className="notification">
       <Topbar />
+      <h2>Your notification will be shown here:</h2>
       {userDetails && (
         <div>
           {userDetails && (
