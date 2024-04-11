@@ -48,7 +48,7 @@ const Explore = ({ explore }) => {
         <div className="share" onClick={handleCreatePostOpen}>
             <div className="shareContainer">
                 <div className="shareLeft">
-                    <img className='postProfileImg' src="/assets/person/10.jpeg"></img>
+                    <img className='postProfileImg' src="/assets/person/1.jpeg"></img>
                     <div className="shareText">
                         <label>Start a Tweet...</label>
                     </div>

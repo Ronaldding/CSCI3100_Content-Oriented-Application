@@ -160,11 +160,11 @@ const Topbar = () => {
           </button>
           {isSettingsOpen && (
             <ul className="topbarSettingsList">
-                <li>
+                {/* <li>
                 <Link to='/settings' className="topbarSettingsItem">
                     Settings
                 </Link>
-                </li>
+                </li> */}
                 <li>
                 <Link to='/saved' className="topbarSettingsItem">
                     Saved
