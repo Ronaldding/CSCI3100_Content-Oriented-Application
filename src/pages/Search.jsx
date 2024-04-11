@@ -168,20 +168,24 @@ const Search = () => {
         </div>
         {searchType === 'name' && (
           <div className="searchResults">
-            {searchResults.map((result) => (
-              <Link to={`/profile/${result._id}` }>
-              <div className="searchResultItem" key={result._id}>
-                <img src={`/assets/person/1.jpeg`} alt="Person" />
-                <span>{result.username}</span>
-                {/* <button className="followButton" onClick={() => handleFollowClick(result._id)}>
-                  {result.isFollowing ? 'Following' : 'Follow'}
-                </button> */}
-                  <button className="followButton">
-                    Info
-                  </button>
-              </div>
-              </Link>
-            ))}
+            {searchResults.length > 0 ? (
+              searchResults.map((result) => (
+                <Link to={`/profile/${result._id}`} key={result._id}>
+                  <div className="searchResultItem">
+                    <img src={`/assets/person/1.jpeg`} alt="Person" />
+                    <span>{result.username}</span>
+                    {/* <button className="followButton" onClick={() => handleFollowClick(result._id)}>
+                      {result.isFollowing ? 'Following' : 'Follow'}
+                    </button> */}
+                    <button className="followButton">
+                      Info
+                    </button>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <div className="noResultsMessage">No results found.</div>
+            )}
           </div>
         )}
         {searchType === 'tag' && (
