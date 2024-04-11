@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './createpost.css';
-import { ImagesOutline, CloseOutline } from 'react-ionicons';
+import { ImagesOutline, CloseOutline,VideocamOutline } from 'react-ionicons';
 import axios from 'axios';
 
 const CreatePost = ({ trigger, onClose }) => {
@@ -43,7 +43,7 @@ const CreatePost = ({ trigger, onClose }) => {
   
       console.log('File uploaded successfully', response.data);
         
-        const imageUrl = `https://8fe4-42-3-28-129.ngrok-free.app/images/${fileName}`;//need change
+        const imageUrl = `https://1c2b-42-200-47-92.ngrok-free.app/images/${fileName}`;//need change
         //const imageUrl = `http://localhost:8800/images/${fileName}`;
         console.log('Image URL:', imageUrl);
         console.log('Image URL:', file);
@@ -77,7 +77,7 @@ const CreatePost = ({ trigger, onClose }) => {
   
       console.log('File uploaded successfully', response.data);
         
-        const videoUrl = `https://8fe4-42-3-28-129.ngrok-free.app/videos/${fileName}`;//need change
+        const videoUrl = `https://1c2b-42-200-47-92.ngrok-free.app/videos/${fileName}`;//need change
         //const imageUrl = `http://localhost:8800/images/${fileName}`;
         console.log('Video URL:', videoUrl);
         setVideo(videoUrl); 
@@ -148,6 +148,14 @@ const CreatePost = ({ trigger, onClose }) => {
                 type="file"
                 accept="image/*"
                 onChange={handleImageUpload}
+                style={{ display: 'none' }}
+              />
+            </label>
+            <label className="uploadLabel">
+            <VideocamOutline color="#ffffff" height="20px" width="20px" />
+              <input
+                type="file"
+                onChange={handleVideoUpload}
                 style={{ display: 'none' }}
               />
             </label>

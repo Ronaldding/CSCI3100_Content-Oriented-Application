@@ -52,7 +52,7 @@ const Feed = ({ activeButton, tags }) => {
     } else if (activeButton === 'posts') {
       const fetchPosts = async () => {
         try {
-          const res = await axios.get(`http://localhost:8800/post/timeline/${id}`);
+          const res = await axios.get(`http://localhost:8800/post/profile/${id}`);
           setFeedContent(res.data);
           console.log(res);
         } catch (error) {
