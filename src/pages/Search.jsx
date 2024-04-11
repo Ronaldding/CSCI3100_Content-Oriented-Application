@@ -93,7 +93,7 @@ const Search = () => {
               className={`searchTypeButton ${searchType === 'name' ? 'active' : ''}`}
               onClick={() => handleSearchTypeChange('name')}
             >
-              Name/ID
+              Name/email
             </button>
           </div>
         </div>

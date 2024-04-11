@@ -60,15 +60,17 @@ const PostDetails = () => {
     try {
       const commentData = {
         userId: currentUserId,
-        desc: replyText
+        desc: retweetText
       };
-
+  
       const res = await axios.post(`http://localhost:8800/retweet/${id}`, commentData);
       console.log(res.data); // Assuming the server responds with the newly created comment
-
+  
       // Clear the reply text input
       setRetweetText('');
-      window.location.reload();
+  
+      // Redirect to the user's profile
+      window.location.href = `/profile/${currentUserId}`;
     } catch (error) {
       console.error(error);
     }
