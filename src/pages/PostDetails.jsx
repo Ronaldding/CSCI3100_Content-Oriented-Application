@@ -51,6 +51,7 @@ const PostDetails = () => {
 
       // Clear the reply text input
       setReplyText('');
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
