@@ -33,6 +33,7 @@ const PostDetails = () => {
   const handleReplyTextChange = (event) => {
     setReplyText(event.target.value);
   };
+
   const handleRetweetTextChange = (event) => {
     setRetweetText(event.target.value);
   };
@@ -66,7 +67,8 @@ const PostDetails = () => {
       console.log(res.data); // Assuming the server responds with the newly created comment
 
       // Clear the reply text input
-      setReplyText('');
+      setRetweetText('');
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -107,8 +109,8 @@ const PostDetails = () => {
                 <input
                   type="text"
                   className="replyInput"
-                  placeholder="Tweet a reply"
-                  value={replyText}
+                  placeholder="Retweet"
+                  value={retweetText}
                   onChange={handleRetweetTextChange}
                 />
               </div>
