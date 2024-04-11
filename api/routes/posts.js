@@ -14,22 +14,22 @@ router.use(cors())
 
 //create a post
 router.post('/post', async (req, res) => {
-  const { userId, desc, img, video, tags } = req.body;
+  const { userId, desc, img, video, tags } = req.body
 
   try {
-    const user = await User.findById(userId);
+    const user = await User.findById(userId)
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: 'User not found' })
     }
 
-    let image, uploadedVideo;
-    const random = Date.now();
+    let image, uploadedVideo
+    const random = Date.now()
     if (img) {
       image = await cloudinary.uploader.upload(img, {
         upload_preset: 'unsigned_upload_posts',
         public_id: `post_img_${userId}_${random}`,
         allowed_formats: ['jpg', 'jpeg', 'png', 'svg', 'ico', 'webp'],
-      });
+      })
     }
 
     if (video) {
@@ -38,7 +38,7 @@ router.post('/post', async (req, res) => {
         //upload_preset: 'video_upload_preset', // Use the preset you configured for videos
         public_id: `post_video_${userId}_${random}`,
         chunk_size: 6000000, // Optional: set a chunk size for large file uploading
-      });
+      })
     }
 
     const newPost = new Post({
@@ -48,16 +48,15 @@ router.post('/post', async (req, res) => {
       img: image ? image.url : undefined,
       video: uploadedVideo ? uploadedVideo.url : undefined,
       tags: tags,
-    });
+    })
 
-    const savedPost = await newPost.save();
+    const savedPost = await newPost.save()
 
-    res.status(200).json(savedPost);
+    res.status(200).json(savedPost)
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: err.message })
   }
-});
-
+})
 
 //update a post
 router.put('/post/:id', async (req, res) => {
@@ -88,10 +87,10 @@ router.delete('/post/:id', async (req, res) => {
 
     if (post.userId === req.body.userId || user.isAdmin) {
       // Check if the user is the owner of the post or an admin
-      /*const publicId = extractPublicId(post.img)
-      if (publicId) {
+      if (post.img) {
+        const publicId = post.img.split('/').pop().split('.')[0]
         await cloudinary.uploader.destroy(publicId)
-      }*/
+      }
 
       await post.deleteOne()
       res.status(200).json('Post has been deleted')
@@ -293,26 +292,25 @@ router.get('/post/timeline/saved/:userId', async (req, res) => {
 })
 //retweet a post
 router.post('/retweet/:postId', async (req, res) => {
-  const { postId } = req.params;
-  const { userId, desc } = req.body;
+  const { postId } = req.params
+  const { userId, desc } = req.body
 
   try {
-  
-    const originalPost = await Post.findById(postId);
+    const originalPost = await Post.findById(postId)
     if (!originalPost) {
-      return res.status(404).json({ message: 'Original post not found' });
+      return res.status(404).json({ message: 'Original post not found' })
     }
 
     const retweetPost = new Post({
-      userId: userId, 
+      userId: userId,
       desc: `${desc} Retweet of: ${originalPost.desc}`,
-      tags: originalPost.tags, 
-      retweets: [{ originalPostId: originalPost._id }], 
-    });
-    const savedRetweetPost = await retweetPost.save();
-    res.status(201).json(savedRetweetPost); 
+      tags: originalPost.tags,
+      retweets: [{ originalPostId: originalPost._id }],
+    })
+    const savedRetweetPost = await retweetPost.save()
+    res.status(201).json(savedRetweetPost)
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: err.message })
   }
-});
+})
 module.exports = router

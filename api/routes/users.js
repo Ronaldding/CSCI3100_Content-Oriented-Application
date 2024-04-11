@@ -61,7 +61,7 @@ router.put('/user/picture/:id', async (req, res) => {
       return res.status(404).json({ message: 'User not found.' })
     }
 
-    if (!req.body.img) {
+    if (!req.body.profilePicture) {
       return res.status(400).json({ message: 'No image file uploaded.' })
     }
 
@@ -83,7 +83,6 @@ router.put('/user/picture/:id', async (req, res) => {
 
     res.status(200).json({
       message: 'Profile picture updated successfully.',
-      profilePicture: req.file.path,
     })
   } catch (err) {
     console.error(err)
