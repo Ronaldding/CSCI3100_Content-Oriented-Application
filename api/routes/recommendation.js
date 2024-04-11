@@ -1,48 +1,69 @@
-const router = require("express").Router();
-const Post = require("../models/Post");
-const User = require("../models/User");
-const mongoose = require('mongoose');
+const router = require('express').Router()
+const Post = require('../models/Post')
+const User = require('../models/User')
+const mongoose = require('mongoose')
 // const jwt = require('jsonwebtoken')
 // const dotenv = require("dotenv");
 // dotenv.config();
 
 // User recommendation
 router.get('/userExplore/:id', async (req, res) => {
-    try {
-        const user = await User.findById(req.params.id);
-        const userFollowings = user.followings;
-        if (userFollowings.length > 0){
-            const followingsFollowings = await User.find({_id: { $in: userFollowings} }).distinct('followings');
-            if (followingsFollowings.length > 0){
-                const userRecommend = await User.find({ _id: { $in: followingsFollowings} })
-                return res.status(200).json(userRecommend);
-            } else {
-                const publicRecommend = await User.find({_id: { $ne: '660970232846199a041ae117'}, isPublic: true });
-                return res.status(200).json(publicRecommend);
-            }
-        } else {
-            const publicRecommend = await User.find({_id: { $ne: '660970232846199a041ae117'}, isPublic: true });
-            return res.status(200).json(publicRecommend);
+  try {
+    const user = await User.findById(req.params.id).populate('followings')
+
+    let scores = []
+
+    for (let following of user.followings) {
+      const userFollowings = await User.findById(following).populate(
+        'followings'
+      )
+      for (let f of userFollowings.followings) {
+        if (!user.followings.includes(f) && !user._id.equals(f)) {
+          scores[f] = (scores[f] || 0) + 1
         }
-    } catch (err) {
-        res.status(500).json(err);
+      }
     }
-});
-    
+
+    // Only top 10 recommendations
+    let recommendedUserIds = Object.keys(scores)
+      .sort((i, j) => recommendationScores[j] - scores[i])
+      .slice(0, 10)
+
+    const recommendedUsers = await User.find({
+      _id: { $in: recommendedUserIds },
+    })
+    res.status(200).json(recommendedUsers)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
 
 // Content recommendation
 router.get('/contentExplore', async (req, res) => {
-    try {
-        const publicUserIds = await User.find({ isPublic: true }).distinct('_id');
-        const postRecommend = await Post.aggregate([
-            { $match: { isHide: false, userId: { $in: publicUserIds.map(id => id.toString()) } } },
-            { $addFields: { numlikes: { $size: '$likes' } } },
-            { $sort: { numlikes: -1 } },
-        ])
-        res.status(200).json(postRecommend);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-}); 
+  try {
+    const likes = await Post.find({
+      likes: mongoose.Types.ObjectId(req.params.userId),
+    })
+    let scores = {}
 
-module.exports = router;
+    userLikes.forEach((post) => {
+      post.tags.forEach((tag) => {
+        scores[tag] = (scores[tag] || 0) + 1
+      })
+    })
+
+    // Sort by newest and only 10 recommendations
+    const recommendedPosts = await Post.find({
+      tags: { $in: Object.keys(scores) },
+      _id: { $nin: userLikes.map((post) => post._id) },
+    })
+      .sort({ createdAt: -1 })
+      .limit(10)
+
+    res.status(200).json(recommendedPosts)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
+
+module.exports = router
