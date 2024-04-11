@@ -115,7 +115,7 @@ class Admin_manage_post extends React.Component {
                             <tbody>
                             {this.state.post_list.map((post, index) => (
                             <tr>
-                            <td style={{width: "auto"}}>{post.username.username}</td>
+                            <td style={{width: "auto"}}>{post.username && post.username.username}</td>
                             <td style={{width: "auto"}}>{post.updatedAt}</td>
                             <td style={{width: "auto"}}>{post.desc}</td>
                             <td style={{width: "auto"}}>
